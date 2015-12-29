@@ -216,6 +216,7 @@
     <Compile Include="Assets\PlayMaker Custom Actions\FOV\DynamicVisionConeFov.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\FOV\SetEnemyFov3d.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\FOV\SetEnemyFov3dByTag.cs" />
+    <Compile Include="Assets\PlayMaker Custom Actions\GameObject\CreateObjectAdvanced.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\GameObject\FindClosest2.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\Physics\CollisionEvent2.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\RectTransform\RectTransformContainsScreenPoint.cs" />
@@ -245,6 +246,8 @@
     <Compile Include="Assets\PlayMaker Custom Actions\RectTransform\RectTransformSetPivot.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\RectTransform\RectTransformSetSizeDelta.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\RectTransform\RectTransformWorldToScreenPoint.cs" />
+    <Compile Include="Assets\PlayMaker Custom Actions\Resources\ResourcesCount.cs" />
+    <Compile Include="Assets\PlayMaker Custom Actions\Resources\ResourcesLoad.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\StateMachine\Iterate.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\Transform\SetTransformParent.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\Vector3\RandomVector3.cs" />
