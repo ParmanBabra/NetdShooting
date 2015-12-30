@@ -81,35 +81,8 @@
     <Reference Include="UnityEditor.Graphs">
       <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.Android.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.AppleTV.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.AppleTV.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Metro.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.Metro.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Tizen.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.Tizen.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.SamsungTV.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.SamsungTV.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.WebGL.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.WebGL.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.LinuxStandalone.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.OSXStandalone.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.OSXStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
@@ -137,21 +110,6 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>Library\UnityAssemblies\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus">
       <HintPath>Assets\GameDataEditor\Editor\ExcelImport\Dlls\EPPlus.dll</HintPath>
@@ -222,6 +180,9 @@
     <Reference Include="ProBuilderEditor-Unity5">
       <HintPath>Assets\ProCore\ProBuilder\Editor\ProBuilderEditor-Unity5.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json.Net20">
+      <HintPath>Assets\PlayMaker DataMaker\Json\Plugins\Newtonsoft.Json.Net20.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="NetdShooting.CSharp.Plugins.csproj">
@@ -286,6 +247,29 @@
     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Editor\TCP2_SmoothedNormalsUtility.cs" />
     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Editor\Utils\TCP2_ShaderGeneratorUtils.cs" />
     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Editor\Utils\TCP2_Utils.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\Editor\ArrayListAddCustomEditor.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\Editor\ArrayListInsertCustomEditor.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\Editor\PlayMakerArrayListProxyObjectPropertyDrawer.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\Editor\HashTableAddCustomEditor.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\Editor\HashTableSetCustomEditor.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Custom\GameObject\Editor\ArrayListSendEventToGameObjectsCustomEditor.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\__internal__\Editor\PlayMakerArrayListProxyInspector.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\__internal__\Editor\PlayMakerCollectionProxyInspector.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\__internal__\Editor\PlayMakerHashTableProxyInspector.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Json\__internal__\Editor\DataMakerJsonEditor.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML Read\Editor\XmlGetNextNodeListPropertiesEditor.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML Read\Editor\XmlGetNodePropertiesEditor.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML Read\Editor\XmlSelectNodesEditor.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML Read\Editor\XmlSelectSingleNodeEditor.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\__internal__\Editor\XmlCustomActionBaseEditor.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\ArrayMaker\Actions\Editor\HashTableGetXmlNodePropertiesEditor.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\__internal__\Editor\DataMakerActionEditorUtils.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\__internal__\Editor\DataMakerXmlEditor.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\__internal__\Editor\DataMakerXmlNodeListProxyEditor.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\__internal__\Editor\DataMakerXmlNodeProxyEditor.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\__internal__\Editor\DataMakerXmlProxyEditor.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\__internal__\Editor\UI\DataMakerEditorGUILayoutUtils.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\_internal_\Editor\DataMakerEditor.cs" />
     <Compile Include="Assets\PlayMaker PathFinding\Agent\Editor\AgentSamplePathPositionCustomEditor.cs" />
     <Compile Include="Assets\PlayMaker PathFinding\Agent\Editor\SetAgentAreaMaskCustomEditor.cs" />
     <Compile Include="Assets\PlayMaker PathFinding\NavMesh\Editor\NavMeshFindClosestEdgeCustomEditor.cs" />
@@ -502,6 +486,7 @@
     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants\TCP2_Mobile_Specular_RimOutline_OutlineBlending.shader" />
     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants\TCP2_Mobile_Specular_Rim_Outline.shader" />
     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants\TCP2_Mobile_Specular_Rim_OutlineBlending.shader" />
+    <None Include="Assets\PlayMaker ArrayMaker\readme.txt" />
     <None Include="Assets\PlayMaker\Readme.txt" />
     <None Include="Assets\PlayMaker\Resources\PlayMakerAssemblies.txt" />
     <None Include="Assets\PlayMaker\Templates\readme.txt" />

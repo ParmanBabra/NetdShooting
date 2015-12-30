@@ -66,21 +66,6 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>Library\UnityAssemblies\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
     <Reference Include="ConditionalExpression">
       <HintPath>Assets\PlayMaker\ConditionalExpression.dll</HintPath>
     </Reference>
@@ -95,6 +80,9 @@
     </Reference>
     <Reference Include="KDTree">
       <HintPath>Assets\ProCore\ProBuilder\Classes\ClassesLib\KDTree.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Net20">
+      <HintPath>Assets\PlayMaker DataMaker\Json\Plugins\Newtonsoft.Json.Net20.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +215,90 @@
     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Demo TCP2\TCP2 Demo Assets\Misc\TCP2_Demo.cs" />
     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Demo TCP2\TCP2 Demo Assets\Misc\TCP2_Demo_View.cs" />
     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Scripts\TCP2_RuntimeUtils.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListAdd.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListAddRange.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListClear.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListConcat.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListContains.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListCopyTo.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListCount.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListExists.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListGet.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListGetNext.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListGetPrevious.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListGetRandom.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListIndexOf.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListInsert.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListIsEmpty.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListLastIndexOf.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListNavigateTo.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListRemove.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListRemoveAt.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListRemoveRange.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListResetValues.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListReverse.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListRevertToSnapShot.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListSet.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListShuffle.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListSort.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListSwapItems.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListTakeSnapShot.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\CreateArrayList.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\DestroyArrayList.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\FindArrayList.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\CreateHashTable.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\DestroyHashTable.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableAdd.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableAddMany.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableClear.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableConcat.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableContains.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableContainsKey.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableContainsValue.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableCount.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableEditKey.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableExists.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableGet.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableGetKeyFromValue.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableGetMany.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableGetNext.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableIsEmpty.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableKeys.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableRemove.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableRevertToSnapShot.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableSet.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableSetMany.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableSortKeysfromValues.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableTakeSnapShot.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Actions\HashTable\HashTableValues.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Custom\GameObject\ArrayListActivateGameObjects.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Custom\GameObject\ArrayListContainsGameObject.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Custom\GameObject\ArrayListFindGameObjectsByTag.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Custom\GameObject\ArrayListGetClosestGameObject.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Custom\GameObject\ArrayListGetClosestGameObjectInSight.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Custom\GameObject\ArrayListGetFarthestGameObject.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Custom\GameObject\ArrayListGetFarthestGameObjectInSight.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Custom\GameObject\ArrayListGetGameObjectMaxFsmFloatIndex.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Custom\GameObject\ArrayListSendEventToGameObjects.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Custom\GameObject\ArrayListSortGameObjectByDistance.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Custom\Statistics\ArrayListGetAverageValue.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Custom\Statistics\ArrayListGetMaxValue.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Custom\Statistics\ArrayListGetMinValue.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Custom\Statistics\ArrayListGetNearestFloatValue.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Unity\Mesh\ArrayListGetVertexColors.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Unity\Mesh\ArrayListGetVertexPositions.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Unity\Mesh\ArrayListSetVertexColors.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Unity\Mesh\ArrayListSetVertexPositions.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Unity\Screen\ArrayListGetScreenResolutions.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Unity\Screen\GetCurrentResolution.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Unity\Screen\ScreenSetResolution.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\Addons\Unity\Text\SplitTextToArrayList.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\__internal__\ArrayListActions.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\__internal__\CollectionsActions.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\__internal__\HashTableActions.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\__internal__\PlayMakerArrayListProxy.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\__internal__\PlayMakerCollectionProxy.cs" />
+    <Compile Include="Assets\PlayMaker ArrayMaker\__internal__\PlayMakerHashTableProxy.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\CrossPlatformInput\CrossPlatformAxisEvent.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\CrossPlatformInput\CrossPlatformGetAxis.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\CrossPlatformInput\CrossPlatformGetAxisRaw.cs" />
@@ -239,6 +311,7 @@
     <Compile Include="Assets\PlayMaker Custom Actions\FOV\SetEnemyFov3dByTag.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\GameObject\CreateObjectAdvanced.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\GameObject\FindClosest2.cs" />
+    <Compile Include="Assets\PlayMaker Custom Actions\Physics\ArrayListFindGameObjectsInsideCollider.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\Physics\CollisionEvent2.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\RectTransform\RectTransformContainsScreenPoint.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\RectTransform\RectTransformFlipLayoutAxes.cs" />
@@ -348,6 +421,38 @@
     <Compile Include="Assets\PlayMaker Custom Actions\uGui\uGuiToggleGetIsOn.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\uGui\uGuiToggleOnValueChangedEvent.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\uGui\uGuiToggleSetIsOn.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Json\Actions\ConvertJsonStringToXmlNode.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Json\ArrayMaker\Actions\JsonGetObjectProperties.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Json\Plugins\JSON.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML Delete\XmlNodeRemoveAll.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML Read\XmlGetNextNodeListProperties.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML Read\XmlGetNodeProperties.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML Read\XmlSelectNodes.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML Read\XmlSelectSingleNode.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML Tools\XmlNodesMathOperator.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML Write\XmlCreateNode.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML Write\XmlInsertNode.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML Write\XmlSaveInProxy.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML Write\XmlSetNodeProperties.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML\XmlLoadFromTextAsset.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML\XmlProxyGetXmlAsString.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\XML\XmlProxyRefreshStringVersion.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\__internal__\FsmXmlPropertiesStorage.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\__internal__\FsmXmlPropertiesTypes.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\__internal__\FsmXmlSource.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\Actions\__internal__\FsmXpathQuery.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\ArrayMaker\Actions\HashTableGetXmlNodeProperties.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\__internal__\DataMakerXmlActions.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\__internal__\DataMakerXmlNodeActions.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\__internal__\DataMakerXmlNodeListActions.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\__internal__\DataMakerXmlNodeListProxy.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\__internal__\DataMakerXmlNodeProxy.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\__internal__\DataMakerXmlProxy.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\__internal__\DataMakerXmlUtils.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\__internal__\Objects\FsmXmlNode.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\Xml\__internal__\Objects\FsmXmlNodeList.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\_internal_\DataMakerCore.cs" />
+    <Compile Include="Assets\PlayMaker DataMaker\_internal_\DataMakerProxyBase.cs" />
     <Compile Include="Assets\PlayMaker PathFinding\Agent\AgentActivateCurrentOffMeshLink.cs" />
     <Compile Include="Assets\PlayMaker PathFinding\Agent\AgentCompleteOffMeshLink.cs" />
     <Compile Include="Assets\PlayMaker PathFinding\Agent\AgentFindClosestEdge.cs" />
@@ -1121,6 +1226,7 @@
     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants\TCP2_Mobile_Specular_RimOutline_OutlineBlending.shader" />
     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants\TCP2_Mobile_Specular_Rim_Outline.shader" />
     <None Include="Assets\JMO Assets\Toony Colors Pro\Shaders 2.0\Variants\TCP2_Mobile_Specular_Rim_OutlineBlending.shader" />
+    <None Include="Assets\PlayMaker ArrayMaker\readme.txt" />
     <None Include="Assets\PlayMaker\Readme.txt" />
     <None Include="Assets\PlayMaker\Resources\PlayMakerAssemblies.txt" />
     <None Include="Assets\PlayMaker\Templates\readme.txt" />
