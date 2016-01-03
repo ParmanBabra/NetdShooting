@@ -136,7 +136,7 @@ namespace HutongGames.PlayMaker.Actions
 
             meshRenderer.receiveShadows = false;
             meshRenderer.useLightProbes = false;
-            meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            meshRenderer.castShadows = false;
 
             meshRenderer.material = material[status.Value].Value;
 
@@ -342,24 +342,23 @@ namespace HutongGames.PlayMaker.Actions
         }
 
         public override void OnDrawActionGizmos()
-        {
-            if (raysGizmosEnabled.Value == true)
-            {
-                Gizmos.color = debugColor.Value;
+		{
+			if (raysGizmosEnabled.Value == true){
+			Gizmos.color = debugColor.Value;
 
-                sizeOfList = hits.Count;
+			sizeOfList = hits.Count;
 
-                if (raysGizmosEnabled.Value == true && sizeOfList > 0)
-                {
-                    foreach (RaycastHit hit in hits)
-                    {
-                        Gizmos.DrawSphere(hit.point, 0.04f);
-                        Gizmos.DrawLine(go.gameObject.transform.position, hit.point);
-                    }
-                }
-            }
-        }
+			if (raysGizmosEnabled.Value == true && sizeOfList > 0) 
+			{
+				foreach (RaycastHit hit in hits)
+				{
+					Gizmos.DrawSphere(hit.point, 0.04f);
+					Gizmos.DrawLine(go.gameObject.transform.position, hit.point);
+				}
+}
+			}
+		}
 
-
-    }
+	
+	}
 }

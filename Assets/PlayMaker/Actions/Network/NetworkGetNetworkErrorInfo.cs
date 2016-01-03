@@ -78,93 +78,93 @@ namespace HutongGames.PlayMaker.Actions
 		
 		void doGetNetworkErrorInfo()
 		{
-			NetworkConnectionError _networkConnectionError = Fsm.EventData.ConnectionError;
-		/* How do you check that Fsm.EventData.ConnectionError is indeed set, since it's an enum?
-			if (_networkConnectionError == null) {
-				LogError ("NetworkConnectionError data is null");
-				return;
-			}
-		*/
-			errorLabel.Value = _networkConnectionError.ToString();
+		//	NetworkConnectionError _networkConnectionError = Fsm.EventData.ConnectionError;
+		///* How do you check that Fsm.EventData.ConnectionError is indeed set, since it's an enum?
+		//	if (_networkConnectionError == null) {
+		//		LogError ("NetworkConnectionError data is null");
+		//		return;
+		//	}
+		//*/
+		//	errorLabel.Value = _networkConnectionError.ToString();
 			
-			switch (_networkConnectionError) {
-			case NetworkConnectionError.NoError:
-				if (NoErrorEvent != null) {
-					Fsm.Event (NoErrorEvent);
-				}
-				break;
-			case NetworkConnectionError.RSAPublicKeyMismatch:
-				if (RSAPublicKeyMismatchEvent != null) {
-					Fsm.Event (RSAPublicKeyMismatchEvent);
-				}
-				break;
-			case NetworkConnectionError.InvalidPassword:
-				if (InvalidPasswordEvent != null) {
-					Fsm.Event (InvalidPasswordEvent);
-				}
-				break;
-			case NetworkConnectionError.ConnectionFailed:
-				if (ConnectionFailedEvent != null) {
-					Fsm.Event (ConnectionFailedEvent);
-				}
-				break;
-			case NetworkConnectionError.TooManyConnectedPlayers:
-				if (TooManyConnectedPlayersEvent != null) {
-					Fsm.Event (TooManyConnectedPlayersEvent);
-				}
-				break;
-			case NetworkConnectionError.ConnectionBanned:
-				if (ConnectionBannedEvent != null) {
-					Fsm.Event (ConnectionBannedEvent);
-				}
-				break;
-			case NetworkConnectionError.AlreadyConnectedToServer:
-				if (AlreadyConnectedToServerEvent != null) {
-					Fsm.Event (AlreadyConnectedToServerEvent);
-				}
-				break;
-			case NetworkConnectionError.AlreadyConnectedToAnotherServer:
-				if (AlreadyConnectedToAnotherServerEvent != null) {
-					Fsm.Event (AlreadyConnectedToAnotherServerEvent);
-				}
-				break;
-			case NetworkConnectionError.CreateSocketOrThreadFailure:
-				if (CreateSocketOrThreadFailureEvent != null) {
-					Fsm.Event (CreateSocketOrThreadFailureEvent);
-				}
-				break;
-			case NetworkConnectionError.IncorrectParameters:
-				if (IncorrectParametersEvent != null) {
-					Fsm.Event (IncorrectParametersEvent);
-				}
-				break;
-			case NetworkConnectionError.EmptyConnectTarget:
-				if (EmptyConnectTargetEvent != null) {
-					Fsm.Event (EmptyConnectTargetEvent);
-				}
-				break;
-			case NetworkConnectionError.InternalDirectConnectFailed:
-				if (InternalDirectConnectFailedEvent != null) {
-					Fsm.Event (InternalDirectConnectFailedEvent);
-				}
-				break;
-			case NetworkConnectionError.NATTargetNotConnected:
-				if (NATTargetNotConnectedEvent != null) {
-					Fsm.Event (NATTargetNotConnectedEvent);
-				}
-				break;
-			case NetworkConnectionError.NATTargetConnectionLost:
-				if (NATTargetConnectionLostEvent != null) {
-					Fsm.Event (NATTargetConnectionLostEvent);
-				}
-				break;
-			case NetworkConnectionError.NATPunchthroughFailed:
-				if (NATPunchthroughFailedEvent != null) {
-					Fsm.Event (NoErrorEvent);
-				}
-				break;
+		//	switch (_networkConnectionError) {
+		//	case NetworkConnectionError.NoError:
+		//		if (NoErrorEvent != null) {
+		//			Fsm.Event (NoErrorEvent);
+		//		}
+		//		break;
+		//	case NetworkConnectionError.RSAPublicKeyMismatch:
+		//		if (RSAPublicKeyMismatchEvent != null) {
+		//			Fsm.Event (RSAPublicKeyMismatchEvent);
+		//		}
+		//		break;
+		//	case NetworkConnectionError.InvalidPassword:
+		//		if (InvalidPasswordEvent != null) {
+		//			Fsm.Event (InvalidPasswordEvent);
+		//		}
+		//		break;
+		//	case NetworkConnectionError.ConnectionFailed:
+		//		if (ConnectionFailedEvent != null) {
+		//			Fsm.Event (ConnectionFailedEvent);
+		//		}
+		//		break;
+		//	case NetworkConnectionError.TooManyConnectedPlayers:
+		//		if (TooManyConnectedPlayersEvent != null) {
+		//			Fsm.Event (TooManyConnectedPlayersEvent);
+		//		}
+		//		break;
+		//	case NetworkConnectionError.ConnectionBanned:
+		//		if (ConnectionBannedEvent != null) {
+		//			Fsm.Event (ConnectionBannedEvent);
+		//		}
+		//		break;
+		//	case NetworkConnectionError.AlreadyConnectedToServer:
+		//		if (AlreadyConnectedToServerEvent != null) {
+		//			Fsm.Event (AlreadyConnectedToServerEvent);
+		//		}
+		//		break;
+		//	case NetworkConnectionError.AlreadyConnectedToAnotherServer:
+		//		if (AlreadyConnectedToAnotherServerEvent != null) {
+		//			Fsm.Event (AlreadyConnectedToAnotherServerEvent);
+		//		}
+		//		break;
+		//	case NetworkConnectionError.CreateSocketOrThreadFailure:
+		//		if (CreateSocketOrThreadFailureEvent != null) {
+		//			Fsm.Event (CreateSocketOrThreadFailureEvent);
+		//		}
+		//		break;
+		//	case NetworkConnectionError.IncorrectParameters:
+		//		if (IncorrectParametersEvent != null) {
+		//			Fsm.Event (IncorrectParametersEvent);
+		//		}
+		//		break;
+		//	case NetworkConnectionError.EmptyConnectTarget:
+		//		if (EmptyConnectTargetEvent != null) {
+		//			Fsm.Event (EmptyConnectTargetEvent);
+		//		}
+		//		break;
+		//	case NetworkConnectionError.InternalDirectConnectFailed:
+		//		if (InternalDirectConnectFailedEvent != null) {
+		//			Fsm.Event (InternalDirectConnectFailedEvent);
+		//		}
+		//		break;
+		//	case NetworkConnectionError.NATTargetNotConnected:
+		//		if (NATTargetNotConnectedEvent != null) {
+		//			Fsm.Event (NATTargetNotConnectedEvent);
+		//		}
+		//		break;
+		//	case NetworkConnectionError.NATTargetConnectionLost:
+		//		if (NATTargetConnectionLostEvent != null) {
+		//			Fsm.Event (NATTargetConnectionLostEvent);
+		//		}
+		//		break;
+		//	case NetworkConnectionError.NATPunchthroughFailed:
+		//		if (NATPunchthroughFailedEvent != null) {
+		//			Fsm.Event (NoErrorEvent);
+		//		}
+		//		break;
 				
-			}
+		//	}
 
 		}
 		

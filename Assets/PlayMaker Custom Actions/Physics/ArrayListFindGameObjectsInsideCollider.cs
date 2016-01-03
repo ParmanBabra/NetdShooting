@@ -6,124 +6,126 @@ using System.Collections.Generic;
 
 namespace HutongGames.PlayMaker.Actions
 {
-	[ActionCategory("ArrayMaker/ArrayList")]
-	[Tooltip("Store all active GameObjects from inside a collider with a specific tag and/or layer. Will filter first by tag then by layer. Tags and/or layers must be declared in the tag/layer manager before using them")]
-	[HelpUrl("http://hutonggames.com/playmakerforum/index.php?topic=11754.0")]
-	public class ArrayListFindGameObjectsInsideCollider : ArrayListActions
-	{
-	
-		[ActionSection("Set up")]
-		
-		[RequiredField]
-		[Tooltip("The gameObject with the PlayMaker ArrayList Proxy component")]
-		[CheckForComponent(typeof(PlayMakerArrayListProxy))]
-		public FsmOwnerDefault gameObject;
-		public FsmObject colliderTarget;
-		
-		[Tooltip("Author defined Reference of the PlayMaker ArrayList Proxy component ( necessary if several component coexists on the same GameObject")]
-		public FsmString reference;
-		
-	
-		[ActionSection("Filter")]
-		[Tooltip("by tag")]
-		public FsmString tag;
-		[TitleAttribute("Incl Layer Filter")]
-		[UIHint(UIHint.FsmBool)]
-		[Tooltip("Also filter by layer?")]
-		public FsmBool layerFilterOn;
-		[UIHint(UIHint.Layer)]
-		public int layer;
+    [ActionCategory("ArrayMaker/ArrayList")]
+    [Tooltip("Store all active GameObjects from inside a collider with a specific tag and/or layer. Will filter first by tag then by layer. Tags and/or layers must be declared in the tag/layer manager before using them")]
+    [HelpUrl("http://hutonggames.com/playmakerforum/index.php?topic=11754.0")]
+    public class ArrayListFindGameObjectsInsideCollider : ArrayListActions
+    {
 
-		private List<GameObject> tempList = new List<GameObject>();
+        [ActionSection("Set up")]
 
-		
-		public override void Reset()
-		{
-			gameObject = null;
-			reference = null;
-			tag = null;
-			layerFilterOn = false;
-			layer = 0;
-		}
+        [RequiredField]
+        [Tooltip("The gameObject with the PlayMaker ArrayList Proxy component")]
+        [CheckForComponent(typeof(PlayMakerArrayListProxy))]
+        public FsmOwnerDefault gameObject;
+        public FsmObject colliderTarget;
 
-		
-		public override void OnEnter()
-		{
-			if ( SetUpArrayListProxyPointer(Fsm.GetOwnerDefaultTarget(gameObject),reference.Value) )
-				FindGOByTag();
-			
-			Finish();
-		}
-
-		
-		public void FindGOByTag()
-		{
-			if (! isProxyValid()) 
-				return;
-			
-			proxy.arrayList.Clear();
-			
-			GameObject[] objtag =  GameObject.FindGameObjectsWithTag (tag.Value);
-
-			if (objtag.Length == 0) {
-				Debug.LogWarning ("No object with tag:  "+tag.Value);
-				return;
-			}
-
-	
-			tempList.Clear();
+        [Tooltip("Author defined Reference of the PlayMaker ArrayList Proxy component ( necessary if several component coexists on the same GameObject")]
+        public FsmString reference;
 
 
-			Collider temp =  colliderTarget.Value as Collider;
-			Bounds colliderBounds = temp.bounds;
+        [ActionSection("Filter")]
+        [Tooltip("by tag")]
+        public FsmString tag;
+        [TitleAttribute("Incl Layer Filter")]
+        [UIHint(UIHint.FsmBool)]
+        [Tooltip("Also filter by layer?")]
+        public FsmBool layerFilterOn;
+        [UIHint(UIHint.Layer)]
+        public int layer;
 
-			if (layerFilterOn.Value == false)
-			{
-				
-				for(int i = 0; i<objtag.Length;i++){
+        private List<GameObject> tempList = new List<GameObject>();
 
-					Renderer tempRen = objtag[i].GetComponent<Renderer>();
-					Bounds myObj = tempRen.bounds;
 
-					bool insideCollider = colliderBounds.Intersects(myObj);
+        public override void Reset()
+        {
+            gameObject = null;
+            reference = null;
+            tag = null;
+            layerFilterOn = false;
+            layer = 0;
+        }
 
-					if (insideCollider == true)
-					{
 
-						tempList.Add (objtag[i]);
+        public override void OnEnter()
+        {
+            if (SetUpArrayListProxyPointer(Fsm.GetOwnerDefaultTarget(gameObject), reference.Value))
+                FindGOByTag();
 
-					}
-				}
+            Finish();
+        }
 
-			}
 
-			if (layerFilterOn.Value == true)
-			{
-				
-				for(int i = 0; i<objtag.Length;i++){
-					
-					Renderer tempRen = objtag[i].GetComponent<Renderer>();
-					Bounds myObj = tempRen.bounds;
-					
-					bool insideCollider = colliderBounds.Intersects(myObj);
-					
-					if (insideCollider == true){
-						
-						if (objtag[i].gameObject.layer == layer)
-						{
-						
-							tempList.Add (objtag[i]);
+        public void FindGOByTag()
+        {
+            if (!isProxyValid())
+                return;
 
-						}
+            proxy.arrayList.Clear();
 
-					}
-				}
-				
-			}
+            GameObject[] objtag = GameObject.FindGameObjectsWithTag(tag.Value);
 
-			proxy.arrayList.InsertRange(0,tempList);
-				
-		
-		}
-	}
+            if (objtag.Length == 0)
+            {
+                Debug.LogWarning("No object with tag:  " + tag.Value);
+                return;
+            }
+
+
+            tempList.Clear();
+            Collider temp = colliderTarget.Value as Collider;
+            Bounds colliderBounds = temp.bounds;
+
+            if (layerFilterOn.Value == false)
+            {
+
+                for (int i = 0; i < objtag.Length; i++)
+                {
+
+                    Collider tempRen = objtag[i].GetComponent<Collider>();
+                    Bounds myObj = tempRen.bounds;
+
+                    bool insideCollider = colliderBounds.Intersects(myObj);
+
+                    if (insideCollider == true)
+                    {
+
+                        tempList.Add(objtag[i]);
+
+                    }
+                }
+
+            }
+
+            if (layerFilterOn.Value == true)
+            {
+
+                for (int i = 0; i < objtag.Length; i++)
+                {
+
+                    Renderer tempRen = objtag[i].GetComponent<Renderer>();
+                    Bounds myObj = tempRen.bounds;
+
+                    bool insideCollider = colliderBounds.Intersects(myObj);
+
+                    if (insideCollider == true)
+                    {
+
+                        if (objtag[i].gameObject.layer == layer)
+                        {
+
+                            tempList.Add(objtag[i]);
+
+                        }
+
+                    }
+                }
+
+            }
+
+            proxy.arrayList.InsertRange(0, tempList);
+
+
+        }
+    }
 }

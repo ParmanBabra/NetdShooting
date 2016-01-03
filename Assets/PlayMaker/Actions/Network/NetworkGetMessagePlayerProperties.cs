@@ -50,17 +50,17 @@ namespace HutongGames.PlayMaker.Actions
 		
 		void doGetOnPLayerConnectedProperties()
 		{
-			NetworkPlayer _player = Fsm.EventData.Player;
-			Debug.Log("hello "+_player.ipAddress);
+			//NetworkPlayer _player = Fsm.EventData.Player;
+			//Debug.Log("hello "+_player.ipAddress);
 			
 			
-			IpAddress.Value = _player.ipAddress;
-			port.Value = _player.port;
-			guid.Value = _player.guid;
-			externalIPAddress.Value = _player.externalIP;
-			externalPort.Value = _player.externalPort;
+			//IpAddress.Value = _player.ipAddress;
+			//port.Value = _player.port;
+			//guid.Value = _player.guid;
+			//externalIPAddress.Value = _player.externalIP;
+			//externalPort.Value = _player.externalPort;
 			
-			Finish();
+			//Finish();
 		}
 		
 	}

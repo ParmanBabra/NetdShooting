@@ -39,22 +39,22 @@ namespace HutongGames.PlayMaker.Actions
 		
 		void doGetNetworkDisconnectionInfo()
 		{
-			NetworkDisconnection _networkDisconnectionInfo = Fsm.EventData.DisconnectionInfo;
+			//NetworkDisconnection _networkDisconnectionInfo = Fsm.EventData.DisconnectionInfo;
 
-			disconnectionLabel.Value = _networkDisconnectionInfo.ToString();
+			//disconnectionLabel.Value = _networkDisconnectionInfo.ToString();
 			
-			switch (_networkDisconnectionInfo) {
-			case NetworkDisconnection.Disconnected:
-				if (disConnectedEvent != null) {
-					Fsm.Event (disConnectedEvent);
-				}
-				break;
-			case NetworkDisconnection.LostConnection:
-				if (lostConnectionEvent != null) {
-					Fsm.Event (lostConnectionEvent);
-				}
-				break;
-			}
+			//switch (_networkDisconnectionInfo) {
+			//case NetworkDisconnection.Disconnected:
+			//	if (disConnectedEvent != null) {
+			//		Fsm.Event (disConnectedEvent);
+			//	}
+			//	break;
+			//case NetworkDisconnection.LostConnection:
+			//	if (lostConnectionEvent != null) {
+			//		Fsm.Event (lostConnectionEvent);
+			//	}
+			//	break;
+			//}
 		}
 		
 	}

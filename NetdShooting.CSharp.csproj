@@ -57,20 +57,41 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>Library\UnityAssemblies\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
     <Reference Include="ConditionalExpression">
       <HintPath>Assets\PlayMaker\ConditionalExpression.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json.Net20">
+      <HintPath>Assets\PlayMaker DataMaker\Json\Plugins\Newtonsoft.Json.Net20.dll</HintPath>
+    </Reference>
     <Reference Include="PlayMaker">
       <HintPath>Assets\Plugins\PlayMaker\PlayMaker.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMaker">
+      <HintPath>Assets\Plugins\PlayMaker\Metro\PlayMaker.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMaker">
+      <HintPath>Assets\Plugins\PlayMaker\WebGL\PlayMaker.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMaker">
+      <HintPath>Assets\Plugins\PlayMaker\WP8\PlayMaker.dll</HintPath>
     </Reference>
     <Reference Include="ProBuilderCore-Unity5">
       <HintPath>Assets\ProCore\ProBuilder\Classes\ProBuilderCore-Unity5.dll</HintPath>
@@ -81,9 +102,6 @@
     <Reference Include="KDTree">
       <HintPath>Assets\ProCore\ProBuilder\Classes\ClassesLib\KDTree.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json.Net20">
-      <HintPath>Assets\PlayMaker DataMaker\Json\Plugins\Newtonsoft.Json.Net20.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="NetdShooting.CSharp.Plugins.csproj">
@@ -92,11 +110,28 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Game Assets\Scripts\AttackType.cs" />
-    <Compile Include="Assets\Game Assets\Scripts\DamageType.cs" />
-    <Compile Include="Assets\Game Assets\Scripts\EffectUnit.cs" />
-    <Compile Include="Assets\Game Assets\Scripts\PlayerMovement.cs" />
-    <Compile Include="Assets\Game Assets\Scripts\SkillType.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\Core\GameObjectExtension.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\AttackType.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\BaseSkill.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\Character.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\CharacterManager.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\Damage.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\DamageType.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\EffectUnit.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\IAttack.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\MaleeAttack.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\NoneAttack.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\PlayerMovement.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\RangeAttack.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\SkillDirection.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\SkillEffect.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\SkillEffectAttack.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\SkillFindMethod.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\SkillInstance.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\SkillType.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\Skills.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\Playmaker Actions\AttackAction.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\Playmaker Actions\CooldownWait.cs" />
     <Compile Include="Assets\GameDataEditor\APIScripts\GDEDataManager.cs" />
     <Compile Include="Assets\GameDataEditor\APIScripts\GDEExtensions.cs" />
     <Compile Include="Assets\GameDataEditor\APIScripts\GDEPPX_Convert.cs" />
@@ -215,6 +250,73 @@
     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Demo TCP2\TCP2 Demo Assets\Misc\TCP2_Demo.cs" />
     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Demo TCP2\TCP2 Demo Assets\Misc\TCP2_Demo_View.cs" />
     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Scripts\TCP2_RuntimeUtils.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\AnimatorCrossFade.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\AnimatorInterruptMatchTarget.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\AnimatorMatchTarget.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\AnimatorPlay.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\AnimatorStartPlayback.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\AnimatorStartRecording.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\AnimatorStopPlayback.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\AnimatorStopRecording.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorApplyRootMotion.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorBody.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorBoneGameObject.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorBool.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorCullingMode.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorCurrentStateInfo.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorCurrentStateInfoIsName.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorCurrentStateInfoIsTag.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorCurrentTransitionInfo.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorCurrentTransitionInfoIsName.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorCurrentTransitionInfoIsUserName.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorDelta.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorFeetPivotActive.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorFloat.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorGravityWeight.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorHumanScale.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorIKGoal.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorInt.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorIsControlled.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorIsHuman.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorIsLayerInTransition.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorIsMatchingTarget.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorIsParameterControlledByCurve.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorLayerCount.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorLayerName.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorLayerWeight.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorLayersAffectMassCenter.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorLeftFootBottomHeight.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorNextStateInfo.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorPivot.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorPlayBackSpeed.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorPlaybackTime.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorRightFootBottomHeight.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorRoot.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorSpeed.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\GetAnimatorTarget.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\NavMeshAgentAnimatorSynchronizer.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorApplyRootMotion.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorBody.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorBool.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorCullingMode.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorFeetPivotActive.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorFloat.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorIKGoal.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorInt.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorLayerWeight.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorLayersAffectMassCenter.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorLookAt.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorPlayBackSpeed.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorPlaybackTime.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorSpeed.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorStabilizeFeet.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorTarget.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\SetAnimatorTrigger.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Actions\Utils\AnimatorFollow.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Scripts\PlayMakerAnimatorIKProxy.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Scripts\PlayMakerAnimatorMoveProxy.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Scripts\PlayMakerAnimatorStateSynchronization.cs" />
+    <Compile Include="Assets\PlayMaker Animator\Scripts\PlayMakerStateMachineBehaviorProxy.cs" />
     <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListAdd.cs" />
     <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListAddRange.cs" />
     <Compile Include="Assets\PlayMaker ArrayMaker\Actions\ArrayList\ArrayListClear.cs" />
@@ -311,6 +413,7 @@
     <Compile Include="Assets\PlayMaker Custom Actions\FOV\SetEnemyFov3dByTag.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\GameObject\CreateObjectAdvanced.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\GameObject\FindClosest2.cs" />
+    <Compile Include="Assets\PlayMaker Custom Actions\Math\IntSubstract.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\Physics\ArrayListFindGameObjectsInsideCollider.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\Physics\CollisionEvent2.cs" />
     <Compile Include="Assets\PlayMaker Custom Actions\RectTransform\RectTransformContainsScreenPoint.cs" />
@@ -1165,6 +1268,8 @@
     <Compile Include="Assets\ProCore\QuickEdit\Scripts\qe_HandleRenderer.cs" />
     <Compile Include="Assets\Scripts\JustAPixel\uGui\RadialLayout.cs" />
     <Compile Include="Assets\Scripts\uGui\InputNavigator.cs" />
+    <Compile Include="Assets\Ultimate Game Tools\ConcaveCollider\Sample Scenes\Bucket\SpawnObjects.cs" />
+    <Compile Include="Assets\Ultimate Game Tools\ConcaveCollider\Scripts\ConcaveCollider.cs" />
     <Compile Include="Assets\iTween\iTween.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1351,6 +1456,7 @@
     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
+    <None Include="Assets\Ultimate Game Tools\ConcaveCollider\1st readme - v1.23.txt" />
     <None Include="Assets\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\net.fabrejean\Editor\Common\GuiSkins\README.txt" />
     <None Include="Assets\net.fabrejean\Editor\Common\GuiSkins\VolcanicGuiSkin\ReadMeForCredits.txt" />

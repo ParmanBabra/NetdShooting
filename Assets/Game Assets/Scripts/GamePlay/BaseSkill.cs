@@ -1,0 +1,81 @@
+﻿using UnityEngine;
+using System.Collections;
+
+namespace NetdShooting.GamePlay
+{
+    public abstract class BaseSkill : MonoBehaviour
+    {
+        [Header("Common Infomation")]
+        public string SkillName;
+        public float CoolDown;
+        public float MaxCoolDown;
+        public int Level;
+        public int MPCost;
+        public SkillType SkillType { get; protected set; }
+
+        [Header("Effects")]
+        public SkillEffect[] Effects;
+
+        [Header("Debug")]
+        public bool DrawGizmos;
+        public bool DrawGizmosOnSelect;
+
+        protected Character OwnerSkill { get; set; }
+
+        public void Start()
+        {
+            OwnerSkill = this.transform.parent.gameObject.GetComponent<Character>();
+
+            if (OwnerSkill == null)
+                throw new System.Exception("Can't Find Owner Skill");
+
+            Effects = new SkillEffect[0];
+
+            OnStart();
+        }
+
+
+        public void OnDrawGizmos()
+        {
+            if (DrawGizmos)
+                OnDrawActionGizmos();
+        }
+
+        public void OnDrawGizmosSelected()
+        {
+            if (DrawGizmosOnSelect)
+                OnDrawActionGizmos();
+        }
+
+
+
+        //For get skill infomation from data souce
+        protected abstract void OnStart();
+
+        public void Use()
+        {
+            float daltaTime = Time.deltaTime;
+            CoolDown -= daltaTime;
+
+            if (!canUse())
+                return;
+
+            ProcessUseSkill(daltaTime);
+
+            if (CoolDown <= 0)
+                CoolDown = MaxCoolDown;
+        }
+
+        protected abstract void ProcessUseSkill(float daltaTime);
+
+        protected virtual void OnDrawActionGizmos()
+        {
+
+        }
+
+        private bool canUse()
+        {
+            return CoolDown <= 0;
+        }
+    }
+}
