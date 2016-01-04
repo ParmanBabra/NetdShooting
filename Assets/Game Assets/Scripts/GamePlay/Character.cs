@@ -4,6 +4,7 @@ using NetdShooting.Core;
 
 namespace NetdShooting.GamePlay
 {
+    [RequireComponent(typeof(Rigidbody))]
     [AddComponentMenu("Game Play/Character")]
     public class Character : MonoBehaviour
     {

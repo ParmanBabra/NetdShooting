@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 namespace NetdShooting.Core
 {
     public static class GameObjectExtension
@@ -32,9 +34,9 @@ namespace NetdShooting.Core
             return null;
         }
 
-        public static ArrayList FindGameObjectsInChildWithTag(this GameObject parent, string tag)
+        public static List<GameObject> FindGameObjectsInChildWithTag(this GameObject parent, string tag)
         {
-            ArrayList list = new ArrayList();
+            List<GameObject> list = new List<GameObject>();
             Transform t = parent.transform;
             foreach (Transform tr in t)
             {
@@ -64,6 +66,63 @@ namespace NetdShooting.Core
             }
 
             return null;
+        }
+
+        public static List<GameObject> FindGameObjectsInHierarchyWithTag(this GameObject parent, string tag)
+        {
+
+            List<GameObject> list = new List<GameObject>();
+            findGameObjectsInHierarchyWithTag(parent, tag, ref list);
+            return list;
+        }
+
+        private static void findGameObjectsInHierarchyWithTag(GameObject parent, string tag, ref List<GameObject> list)
+        {
+            Transform t = parent.transform;
+            foreach (Transform tr in t)
+            {
+                if (tr.tag == tag)
+                {
+                    list.Add(tr.gameObject);
+                }
+
+                findGameObjectsInHierarchyWithTag(tr.gameObject, tag, ref list);
+            }
+        }
+
+        public static GameObject FindMuzzle(this GameObject parent, string name)
+        {
+            var muzzlies = parent.FindGameObjectsInHierarchyWithTag("Muzzle");
+
+            foreach (var go in muzzlies)
+            {
+                if (go.name == name)
+                    return go;
+            }
+
+            return null;
+        }
+
+        public static List<GameObject> FindMuzzlies(this GameObject parent, string name)
+        {
+            List<GameObject> list = new List<GameObject>();
+            var muzzlies = parent.FindGameObjectsInHierarchyWithTag("Muzzle");
+
+            foreach (var go in muzzlies)
+            {
+                if (go.name == name)
+                    list.Add(go);
+            }
+
+            return list;
+        }
+
+        public static bool TryGetComponent<T>(this GameObject go, out T component)
+        {
+            component = go.GetComponent<T>();
+            if (component == null)
+                return false;
+            return true;
         }
     }
 }

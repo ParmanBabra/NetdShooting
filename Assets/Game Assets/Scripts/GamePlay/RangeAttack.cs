@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 using NetdShooting.Core;
 
 namespace NetdShooting.GamePlay
@@ -17,7 +16,7 @@ namespace NetdShooting.GamePlay
         public RangeAttack(Character character)
         {
             _character = character;
-            _muzzle = character.gameObject.FindGameObjectInHierarchyWithTag("Spawn Bullet Location");
+            _muzzle = character.gameObject.FindMuzzle("Spawn Bullet");
             _maxCoolDown = character.AttackSpeed;
         }
 
@@ -31,7 +30,14 @@ namespace NetdShooting.GamePlay
             //Play Animation
 
             //Create Bullet
-            CreateBullet();
+            var bullet = CreateBullet();
+            IProjection projection;
+
+            if (!bullet.TryGetComponent<IProjection>(out projection))
+                Debug.LogWarning("Can't get projection for bullet prefab");
+
+            var damage = CreateDmage();
+            projection.SetDamage(damage);
 
             //Update Cooldown
             if (_coolDown <= 0)
@@ -40,9 +46,19 @@ namespace NetdShooting.GamePlay
             return true;
         }
 
-        private UnityEngine.Object CreateBullet()
+        private Damage CreateDmage()
         {
-            return UnityEngine.Object.Instantiate(_character.BulletPrefab, _muzzle.transform.position, _muzzle.transform.rotation);
+            Damage damage = new GamePlay.Damage();
+            damage.DamageType = DamageType.Physic;
+            damage.During = 0;
+            damage.Effects = new SkillEffect[0];
+            damage.HitDamage = Random.Range(_character.MinAttack, _character.MaxAttack);
+            return damage;
+        }
+
+        private UnityEngine.GameObject CreateBullet()
+        {
+            return (GameObject)UnityEngine.Object.Instantiate(_character.BulletPrefab, _muzzle.transform.position, _muzzle.transform.rotation);
         }
 
         private bool canAttack()

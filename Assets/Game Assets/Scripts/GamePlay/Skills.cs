@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using NetdShooting.Core;
+using System.Collections.Generic;
 
 namespace NetdShooting.GamePlay
 {
@@ -9,7 +10,7 @@ namespace NetdShooting.GamePlay
     {
         public FindMethod FindMethod;
         public int Count;
-        private ArrayList _skills;
+        private List<GameObject> _skills;
 
 
         // Use this for initialization

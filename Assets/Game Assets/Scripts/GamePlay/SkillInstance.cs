@@ -14,6 +14,7 @@ namespace NetdShooting.GamePlay
         public float LowDistance = 2.0f;
         public int Damage = 1;
         public DamageType DamageType = DamageType.Physic;
+        public float During = 0;
 
         private CharacterManager _characterManager;
 
@@ -24,12 +25,7 @@ namespace NetdShooting.GamePlay
 
         protected override void OnStart()
         {
-            var goCharacterManager = GameObject.FindGameObjectWithTag("Character Manager");
-
-            if (goCharacterManager == null)
-                throw new System.Exception("Can't find character manager");
-
-            _characterManager = goCharacterManager.GetComponent<CharacterManager>();
+            _characterManager = GameHelper.GetCharacterManager();
         }
 
         protected override void ProcessUseSkill(float daltaTime)
@@ -43,7 +39,7 @@ namespace NetdShooting.GamePlay
 
             foreach (Character character in _characterManager.Characters)
             {
-                if (character == OwnerSkill)
+                if (character.Team == OwnerSkill.Team)
                     continue;
 
                 var objInsideFOV = insideFOV(character.gameObject, this.gameObject, direction, FOV, Range);
@@ -106,13 +102,16 @@ namespace NetdShooting.GamePlay
             damage.HitDamage = hitDamage;
             damage.DamageType = DamageType;
             damage.Effects = Effects;
+            damage.During = During;
 
             target.DealDamage(damage);
         }
+
         private bool checkDistance(GameObject targetTemp, GameObject goTemp)
         {
             return Vector3.Distance(targetTemp.transform.position, goTemp.transform.position) < LowDistance;
         }
+
         private bool insideFOV(GameObject targetTemp, GameObject goTemp, Vector3 direction, float angleTemp, float distanceTemp)
         {
             Vector3 distanceToPlayer = targetTemp.transform.position - goTemp.transform.position;
@@ -124,7 +123,5 @@ namespace NetdShooting.GamePlay
 
             return false;
         }
-
-
     }
 }
