@@ -18,6 +18,7 @@ namespace NetdShooting.GamePlay
         [Header("Skill Prefab")]
         public GameObject BulletPrefab;
         public string MuzzleSlotName;
+        public float MovingSpeed;
 
         private GameObject _muzzle;
         private CharacterManager _characterManager;
@@ -54,6 +55,7 @@ namespace NetdShooting.GamePlay
 
             var damage = CreateDmage();
             projection.SetDamage(damage, AreaDamage, Radius);
+            projection.MovingSpeed = MovingSpeed;
         }
 
         private Damage CreateDmage()

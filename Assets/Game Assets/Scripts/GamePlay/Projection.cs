@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using NetdShooting.Core;
+using System.Collections.Generic;
 
 namespace NetdShooting.GamePlay
 {
@@ -18,6 +19,7 @@ namespace NetdShooting.GamePlay
         private bool _areaDamage;
 
         private CharacterManager _characterManager;
+        private List<Character> inAreaCharacter;
 
         public void Start()
         {
@@ -26,6 +28,8 @@ namespace NetdShooting.GamePlay
             _rigidbody = this.GetComponent<Rigidbody>();
             var force = this.transform.forward * Speed;
             _rigidbody.AddForce(force, ForceMode.Impulse);
+
+            inAreaCharacter = new List<Character>();
         }
 
         public void SetDamage(Damage damage, bool areaDamage = false, float radius = 0.0f)
@@ -43,10 +47,29 @@ namespace NetdShooting.GamePlay
             areaCollider.radius = radius;
         }
 
+        public void OnTriggerEnter(Collider other)
+        {
+            Character character;
+
+            if (!other.gameObject.TryGetComponent<Character>(out character))
+                return;
+
+            inAreaCharacter.Add(character);
+        }
+
+        public void OnTriggerExit(Collider other)
+        {
+            Character character;
+
+            if (!other.gameObject.TryGetComponent<Character>(out character))
+                return;
+
+            inAreaCharacter.Remove(character);
+        }
+
         public void OnCollisionEnter(Collision collision)
         {
             Character character;
-            Debug.Break();
 
             if (!collision.gameObject.TryGetComponent<Character>(out character))
                 return;
@@ -55,25 +78,23 @@ namespace NetdShooting.GamePlay
 
             if (_areaDamage)
             {
-                foreach (var otherCharacter in _characterManager.Characters)
+                foreach (var otherCharacter in inAreaCharacter)
                 {
                     if (character.Team == otherCharacter.Team)
                         continue;
 
-                    var colliders = otherCharacter.GetComponents<Collider>();
-
-                    foreach (var otherCollider in colliders)
-                    {
-                        if (areaCollider.bounds.Intersects(otherCollider.bounds))
-                        {
-                            otherCharacter.DealDamage(_damage);
-                            break;
-                        }
-                    }
+                    otherCharacter.DealDamage(_damage);
                 }
             }
 
-            GameObject.Destroy(this);
+
+            GameObject.DestroyObject(this.gameObject);
+        }
+
+        public float MovingSpeed
+        {
+            get { return Speed; }
+            set { Speed = value; }
         }
     }
 }

@@ -52,18 +52,19 @@ namespace NetdShooting.GamePlay
         //For get skill infomation from data souce
         protected abstract void OnStart();
 
+        public void Update()
+        {
+            CoolDown = Mathf.Max(CoolDown - Time.deltaTime, 0);
+        }
+
         public void Use()
         {
-            float daltaTime = Time.deltaTime;
-            CoolDown -= daltaTime;
-
             if (!canUse())
                 return;
 
-            ProcessUseSkill(daltaTime);
+            ProcessUseSkill(Time.deltaTime);
 
-            if (CoolDown <= 0)
-                CoolDown = MaxCoolDown;
+            CoolDown = MaxCoolDown;
         }
 
         protected abstract void ProcessUseSkill(float daltaTime);
