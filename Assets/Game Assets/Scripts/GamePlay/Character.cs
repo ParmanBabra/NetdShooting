@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using NetdShooting.Core;
+using System.Collections.Generic;
+using System;
 
 namespace NetdShooting.GamePlay
 {
@@ -18,6 +20,8 @@ namespace NetdShooting.GamePlay
         [Header("Status")]
         public int HitPoint;
         public int MaxHitPoint;
+        public int ManaPoint;
+        public int MaxManaPoint;
         public int Defend;
         public int MagicDefend;
         public int MaxAttack;
@@ -30,12 +34,13 @@ namespace NetdShooting.GamePlay
 
         IAttack _attack;
 
-        Hashtable _appledEffects;
+        Dictionary<Type, ApplyEffect> _appledEffects;
+        List<ApplyEffect> _stackEffect;
 
         class ApplyEffect
         {
-            public float ValueBeforeApply { get; set; }
             public float EffectValue { get; set; }
+            public float BeforeApplyEffectValue { get; set; }
             public SkillEffect Effect { get; set; }
             public float During { get; set; }
         }
@@ -56,20 +61,41 @@ namespace NetdShooting.GamePlay
                     break;
             }
 
-            _appledEffects = new Hashtable();
+            _appledEffects = new Dictionary<Type, ApplyEffect>();
+            _stackEffect = new List<ApplyEffect>();
+
+            ManaPoint = MaxManaPoint;
+            HitPoint = MaxHitPoint;
         }
 
         public void Update()
         {
             float daltaTime = Time.deltaTime;
-            foreach (ApplyEffect applyEffect in _appledEffects)
+
+            ApplyEffect[] appledEffects = new ApplyEffect[_appledEffects.Values.Count];
+            _appledEffects.Values.CopyTo(appledEffects, 0);
+
+            foreach (ApplyEffect applyEffect in appledEffects)
             {
                 applyEffect.During -= daltaTime;
 
                 if (applyEffect.During <= 0)
+                {
+                    applyEffect.Effect.Unapply(this);
                     _appledEffects.Remove(applyEffect.Effect.GetType());
+                }
             }
 
+            foreach (ApplyEffect applyEffect in _stackEffect.ToArray())
+            {
+                applyEffect.During -= daltaTime;
+
+                if (applyEffect.During <= 0)
+                {
+                    applyEffect.Effect.Unapply(this);
+                    _stackEffect.Remove(applyEffect);
+                }
+            }
         }
 
         public void DealDamage(Damage damage)
@@ -79,32 +105,46 @@ namespace NetdShooting.GamePlay
 
             foreach (var effect in damage.Effects)
             {
-                if (_appledEffects.ContainsKey(effect.GetType()))
-                {
-                    ApplyEffect applyEffect = (ApplyEffect)_appledEffects[effect.GetType()];
-                    var oldEffectValue = applyEffect.EffectValue;
-                    var newEffectValue = effect.GetEffectValue(applyEffect.ValueBeforeApply);
-
-                    if (newEffectValue > oldEffectValue)
-                    {
-                        applyEffect.Effect.Unapply(this);
-                        effect.Apply(this);
-                        applyEffect.EffectValue = newEffectValue;
-                        applyEffect.During = damage.During;
-                    }
-                    else
-                        applyEffect.During = damage.During;
-                }
-                else
+                if (!effect.IsStack)
                 {
                     ApplyEffect applyEffect = new ApplyEffect();
                     applyEffect.During = damage.During;
                     applyEffect.Effect = effect;
                     applyEffect.EffectValue = effect.GetEffectValue(this);
-                    applyEffect.ValueBeforeApply = effect.GetValueBeforeApply(this);
-                    _appledEffects.Add(effect.GetType(), applyEffect);
+                    applyEffect.BeforeApplyEffectValue = effect.GetBeforeApplyEffectValue(this);
+                    _stackEffect.Add(applyEffect);
 
                     effect.Apply(this);
+                }
+                else
+                {
+                    if (_appledEffects.ContainsKey(effect.GetType()))
+                    {
+                        ApplyEffect applyEffect = (ApplyEffect)_appledEffects[effect.GetType()];
+                        var oldEffectValue = applyEffect.EffectValue;
+                        var newEffectValue = effect.GetEffectValue(applyEffect.BeforeApplyEffectValue);
+
+                        if (newEffectValue > oldEffectValue)
+                        {
+                            applyEffect.Effect.Unapply(this);
+                            effect.Apply(this);
+                            applyEffect.EffectValue = newEffectValue;
+                            applyEffect.During = damage.During;
+                        }
+                        else
+                            applyEffect.During = damage.During;
+                    }
+                    else
+                    {
+                        ApplyEffect applyEffect = new ApplyEffect();
+                        applyEffect.During = damage.During;
+                        applyEffect.Effect = effect;
+                        applyEffect.EffectValue = effect.GetEffectValue(this);
+                        applyEffect.BeforeApplyEffectValue = effect.GetBeforeApplyEffectValue(this);
+                        _appledEffects.Add(effect.GetType(), applyEffect);
+
+                        effect.Apply(this);
+                    }
                 }
             }
         }

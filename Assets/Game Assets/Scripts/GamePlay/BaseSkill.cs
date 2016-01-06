@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace NetdShooting.GamePlay
 {
@@ -16,6 +17,7 @@ namespace NetdShooting.GamePlay
         [Header("Effects")]
         public SkillEffect[] Effects;
 
+
         [Header("Debug")]
         public bool DrawGizmos;
         public bool DrawGizmosOnSelect;
@@ -28,8 +30,6 @@ namespace NetdShooting.GamePlay
 
             if (OwnerSkill == null)
                 throw new System.Exception("Can't Find Owner Skill");
-
-            Effects = new SkillEffect[0];
 
             OnStart();
         }
@@ -54,7 +54,10 @@ namespace NetdShooting.GamePlay
 
         public void Update()
         {
-            CoolDown = Mathf.Max(CoolDown - Time.deltaTime, 0);
+            var deltaTime = Time.deltaTime;
+            CoolDown = Mathf.Max(CoolDown - deltaTime, 0);
+
+            ProcessSkill(deltaTime);
         }
 
         public void Use()
@@ -67,7 +70,9 @@ namespace NetdShooting.GamePlay
             CoolDown = MaxCoolDown;
         }
 
-        protected abstract void ProcessUseSkill(float daltaTime);
+        protected virtual void ProcessUseSkill(float daltaTime) { }
+
+        protected virtual void ProcessSkill(float daltaTime) { }
 
         protected virtual void OnDrawActionGizmos()
         {
