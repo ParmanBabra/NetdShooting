@@ -11,7 +11,6 @@ namespace NetdShooting.GamePlay
     public class Character : MonoBehaviour
     {
         [Header("Information")]
-
         public AttackType AttackType;
         public string ClassName;
         public int Level;
@@ -27,6 +26,7 @@ namespace NetdShooting.GamePlay
         public int MaxAttack;
         public int MinAttack;
         public float AttackSpeed; //Per Sec
+        public float Speed;
 
         [Header("Range Attacking")]
         public GameObject BulletPrefab;
@@ -102,7 +102,7 @@ namespace NetdShooting.GamePlay
         {
             //apply basic damage
             HitPoint -= damage.HitDamage;
-
+            Debug.Log("Damage");
             foreach (var effect in damage.Effects)
             {
                 if (!effect.IsStack)

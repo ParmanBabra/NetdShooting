@@ -58,6 +58,8 @@ namespace NetdShooting.GamePlay
 
         protected override void OnDrawActionGizmos()
         {
+
+            var op = this.gameObject.transform.position - (this.gameObject.transform.forward * 0.5f);
             var rotate = this.gameObject.transform.eulerAngles;
             var direction = Quaternion.Euler(rotate) * Vector3.forward;
 
@@ -65,14 +67,14 @@ namespace NetdShooting.GamePlay
             float arrowHeadLength = 0.25f;
             float arrowHeadAngle = 20.0f;
 
-            Gizmos.DrawRay(this.gameObject.transform.position, direction.normalized * Range);
+            Gizmos.DrawRay(op, direction.normalized * Range);
 
             Gizmos.color = Color.yellow;
 
             Vector3 right = Quaternion.LookRotation(direction) * Quaternion.Euler(0, 180 + arrowHeadAngle, 0) * new Vector3(0, 0, 1);
             Vector3 left = Quaternion.LookRotation(direction) * Quaternion.Euler(0, 180 - arrowHeadAngle, 0) * new Vector3(0, 0, 1);
-            Gizmos.DrawRay(this.gameObject.transform.position + direction.normalized * Range, right * arrowHeadLength);
-            Gizmos.DrawRay(this.gameObject.transform.position + direction.normalized * Range, left * arrowHeadLength);
+            Gizmos.DrawRay(op + direction.normalized * Range, right * arrowHeadLength);
+            Gizmos.DrawRay(op + direction.normalized * Range, left * arrowHeadLength);
 
 
             Gizmos.color = Color.yellow;
@@ -82,8 +84,8 @@ namespace NetdShooting.GamePlay
 
             Vector3 leftRayDirection = leftRayRotation * direction;
             Vector3 rightRayDirection = rightRayRotation * direction;
-            Gizmos.DrawRay(this.gameObject.transform.position, leftRayDirection * Range);
-            Gizmos.DrawRay(this.gameObject.transform.position, rightRayDirection * Range);
+            Gizmos.DrawRay(op, leftRayDirection * Range);
+            Gizmos.DrawRay(op, rightRayDirection * Range);
         }
 
         private void dealDamage(Character target)
@@ -114,7 +116,7 @@ namespace NetdShooting.GamePlay
 
         private bool insideFOV(GameObject targetTemp, GameObject goTemp, Vector3 direction, float angleTemp, float distanceTemp)
         {
-            Vector3 distanceToPlayer = targetTemp.transform.position - goTemp.transform.position;
+            Vector3 distanceToPlayer = targetTemp.transform.position - (goTemp.transform.transform.position - (goTemp.transform.transform.forward * 0.5f));
             float angleToPlayer = Vector3.Angle(distanceToPlayer, direction.normalized);
             float finalDistanceToPlayer = distanceToPlayer.magnitude;
 

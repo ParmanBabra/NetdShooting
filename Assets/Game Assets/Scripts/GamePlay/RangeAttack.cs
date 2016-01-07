@@ -38,6 +38,7 @@ namespace NetdShooting.GamePlay
 
             var damage = CreateDmage();
             projection.SetDamage(damage);
+            projection.SetOwner(_character);
 
             //Update Cooldown
             if (_coolDown <= 0)

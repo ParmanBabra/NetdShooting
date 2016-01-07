@@ -2,6 +2,7 @@
 using System.Collections;
 using NetdShooting.Core;
 using System.Collections.Generic;
+using System;
 
 namespace NetdShooting.GamePlay
 {
@@ -19,7 +20,8 @@ namespace NetdShooting.GamePlay
         private bool _areaDamage;
 
         private CharacterManager _characterManager;
-        private List<Character> inAreaCharacter;
+        private List<Character> _inAreaCharacter;
+        private Character _owner;
 
         public void Start()
         {
@@ -29,7 +31,7 @@ namespace NetdShooting.GamePlay
             var force = this.transform.forward * Speed;
             _rigidbody.AddForce(force, ForceMode.Impulse);
 
-            inAreaCharacter = new List<Character>();
+            _inAreaCharacter = new List<Character>();
         }
 
         public void SetDamage(Damage damage, bool areaDamage = false, float radius = 0.0f)
@@ -44,7 +46,8 @@ namespace NetdShooting.GamePlay
                     areaCollider = sphere;
             }
 
-            areaCollider.radius = radius;
+            if (areaCollider != null)
+                areaCollider.radius = radius;
         }
 
         public void OnTriggerEnter(Collider other)
@@ -54,7 +57,7 @@ namespace NetdShooting.GamePlay
             if (!other.gameObject.TryGetComponent<Character>(out character))
                 return;
 
-            inAreaCharacter.Add(character);
+            _inAreaCharacter.Add(character);
         }
 
         public void OnTriggerExit(Collider other)
@@ -64,7 +67,7 @@ namespace NetdShooting.GamePlay
             if (!other.gameObject.TryGetComponent<Character>(out character))
                 return;
 
-            inAreaCharacter.Remove(character);
+            _inAreaCharacter.Remove(character);
         }
 
         public void OnCollisionEnter(Collision collision)
@@ -74,21 +77,32 @@ namespace NetdShooting.GamePlay
             if (!collision.gameObject.TryGetComponent<Character>(out character))
                 return;
 
+            if (_owner.Team == character.Team)
+                return;
+
             character.DealDamage(_damage);
 
             if (_areaDamage)
             {
-                foreach (var otherCharacter in inAreaCharacter)
+                foreach (var otherCharacter in _inAreaCharacter)
                 {
-                    if (character.Team == otherCharacter.Team)
+                    if (_owner.Team == otherCharacter.Team)
+                        continue;
+
+                    if (character == otherCharacter)
                         continue;
 
                     otherCharacter.DealDamage(_damage);
                 }
             }
 
-
             GameObject.DestroyObject(this.gameObject);
+            //GameObject.DestroyImmediate(this);
+        }
+
+        public void SetOwner(Character owner)
+        {
+            _owner = owner;
         }
 
         public float MovingSpeed
