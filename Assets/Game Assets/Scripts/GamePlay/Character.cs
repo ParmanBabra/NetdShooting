@@ -102,7 +102,7 @@ namespace NetdShooting.GamePlay
         {
             //apply basic damage
             HitPoint -= damage.HitDamage;
-            Debug.Log("Damage");
+
             foreach (var effect in damage.Effects)
             {
                 if (!effect.IsStack)
