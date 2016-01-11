@@ -31,7 +31,12 @@ namespace NetdShooting.GamePlay
 
         private CharacterManager _characterManager;
 
-        void Awake()
+        public IEnumerator RandomMoveing()
+        {
+            yield return new WaitForSeconds(1);
+        }
+
+        public void Awake()
         {
             // Set up references.
             _agent = GetComponent<NavMeshAgent>();
@@ -49,7 +54,7 @@ namespace NetdShooting.GamePlay
 
         public void Update()
         {
-            Detactor();
+            Detact();
         }
 
         public bool RandomMove()
@@ -83,7 +88,7 @@ namespace NetdShooting.GamePlay
                     (_randomMoveLocation.z >= obp.z - 1.0f && _randomMoveLocation.z <= obp.z + 1.0f);
         }
 
-        public void Detactor()
+        public void Detact()
         {
             foreach (var otherCharacter in _characterManager.Characters)
             {
@@ -114,7 +119,7 @@ namespace NetdShooting.GamePlay
             return false;
         }
 
-        void OnDrawGizmosSelected()
+        private void OnDrawGizmosSelected()
         {
             var op = this.gameObject.transform.position - (this.gameObject.transform.forward * 0.5f);
             var rotate = this.gameObject.transform.eulerAngles;
