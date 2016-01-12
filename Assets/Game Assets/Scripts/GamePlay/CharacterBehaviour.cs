@@ -31,11 +31,6 @@ namespace NetdShooting.GamePlay
 
         private CharacterManager _characterManager;
 
-        public IEnumerator RandomMoveing()
-        {
-            yield return new WaitForSeconds(1);
-        }
-
         public void Awake()
         {
             // Set up references.
@@ -57,18 +52,12 @@ namespace NetdShooting.GamePlay
             Detact();
         }
 
-        public bool RandomMove()
+        public void RandomMove()
         {
             if (CheckAreadyToRandomTarget())
             {
-                _randomMoveLocation = CalculateRandomLocation();
-                _agent.SetDestination(_randomMoveLocation);
-                return true;
-            }
-            else
-            {
-                _agent.SetDestination(_randomMoveLocation);
-                return false;
+                var location = CalculateRandomLocation();
+                _agent.SetDestination(location);
             }
         }
 
@@ -83,9 +72,10 @@ namespace NetdShooting.GamePlay
 
         private bool CheckAreadyToRandomTarget()
         {
-            var obp = this.gameObject.transform.position;
-            return (_randomMoveLocation.x >= obp.x - 1.0f && _randomMoveLocation.x <= obp.x + 1.0f) &&
-                    (_randomMoveLocation.z >= obp.z - 1.0f && _randomMoveLocation.z <= obp.z + 1.0f);
+            float dist = _agent.remainingDistance;
+            return (dist != Mathf.Infinity &&
+                    _agent.pathStatus == NavMeshPathStatus.PathComplete &&
+                    _agent.remainingDistance <= _agent.stoppingDistance);
         }
 
         public void Detact()
@@ -196,6 +186,16 @@ namespace NetdShooting.GamePlay
         public GameObject GetFoundEnemy()
         {
             return _foundEnemy;
+        }
+
+        public bool GetIsAgentToMoveTarget()
+        {
+            return CheckAreadyToRandomTarget();
+        }
+
+        public float GetAttackDistance()
+        {
+            return _character.AttackDistance;
         }
     }
 }

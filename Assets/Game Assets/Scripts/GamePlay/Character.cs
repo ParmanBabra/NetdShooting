@@ -27,6 +27,7 @@ namespace NetdShooting.GamePlay
         public int MinAttack;
         public float AttackSpeed; //Per Sec
         public float Speed;
+        public float AttackDistance;
 
         [Header("Range Attacking")]
         public GameObject BulletPrefab;
