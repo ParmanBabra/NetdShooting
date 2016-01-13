@@ -142,14 +142,16 @@ namespace NetdShooting.GamePlay
 
         public void Following(GameObject target)
         {
-            if (_lastPositionTarget == target.transform.position)
+            var position = target.transform.position;
+            if (Vector3.SqrMagnitude(this.gameObject.transform.position - position) < GetAttackDistance())
+            {
+                _agent.SetDestination(this.gameObject.transform.position);
                 return;
+            }
 
-            Ray ray = new Ray(target.transform.position, this.gameObject.transform.position);
-            var movingLocation = ray.GetPoint(_agent.stoppingDistance);
+            //position = Vector3.MoveTowards(this.gameObject.transform.position, position, GetAttackDistance());
 
-            _agent.SetDestination(movingLocation);
-            _lastPositionTarget = target.transform.position;
+            _agent.SetDestination(position);
         }
 
         public void LookAt(GameObject target)
