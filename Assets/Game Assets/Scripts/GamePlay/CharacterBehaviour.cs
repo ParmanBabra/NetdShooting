@@ -14,37 +14,31 @@ namespace NetdShooting.GamePlay
         public float Range = 5.0f;
 
         private Character _character;
-        private float _speed;
 
         private Animator _anim;                      // Reference to the animator component.
         private NavMeshAgent _agent;
 
-        private Vector3 _lastPositionTarget;
         private Quaternion _lastRotation;
         private Quaternion _desiredRotation;
 
         private Vector3 _startUpLocation;
-        private Vector3 _randomMoveLocation;
         private bool _foundedEnemy;
 
         private GameObject _foundEnemy;
-
         private CharacterManager _characterManager;
 
         public void Awake()
         {
             // Set up references.
             _agent = GetComponent<NavMeshAgent>();
-
             _characterManager = GameHelper.GetCharacterManager();
+            _character = this.gameObject.GetComponent<Character>();
         }
 
         public void Start()
         {
-            _character = this.gameObject.GetComponent<Character>();
             _agent.speed = _character.Speed;
             _startUpLocation = this.gameObject.transform.position;
-            _randomMoveLocation = CalculateRandomLocation();
         }
 
         public void Update()
@@ -138,27 +132,22 @@ namespace NetdShooting.GamePlay
             Vector3 rightRayDirection = rightRayRotation * direction;
             Gizmos.DrawRay(op, leftRayDirection * Range);
             Gizmos.DrawRay(op, rightRayDirection * Range);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(this.gameObject.transform.position, GetAttackDistance());
         }
 
         public void Following(GameObject target)
         {
-            var position = target.transform.position;
-            if (Vector3.SqrMagnitude(this.gameObject.transform.position - position) < GetAttackDistance())
-            {
-                _agent.SetDestination(this.gameObject.transform.position);
-                return;
-            }
+            var distance = Mathf.Max(GetAttackDistance() / 2, _agent.radius * 4);
 
-            //position = Vector3.MoveTowards(this.gameObject.transform.position, position, GetAttackDistance());
+            var moveingPosition = Vector3.MoveTowards(this.gameObject.transform.position, target.transform.position, distance);
 
-            _agent.SetDestination(position);
+            _agent.SetDestination(moveingPosition);
         }
 
         public void LookAt(GameObject target)
         {
-            if (_lastPositionTarget == target.transform.position)
-                return;
-
             Vector3 lookAtPos;
 
             lookAtPos = target.transform.position;
@@ -197,6 +186,9 @@ namespace NetdShooting.GamePlay
 
         public float GetAttackDistance()
         {
+            if (_character == null)
+                return 0.0f;
+
             return _character.AttackDistance;
         }
     }
