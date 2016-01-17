@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using NetdShooting.Core;
 
 namespace NetdShooting.GamePlay
 {
@@ -79,7 +80,7 @@ namespace NetdShooting.GamePlay
                 if (_character.Team == otherCharacter.Team)
                     return;
 
-                if (insideFOV(otherCharacter.gameObject, this.gameObject, this.gameObject.transform.forward, FOV, Range))
+                if (gameObject.InsideFOV(otherCharacter.gameObject, this.gameObject.transform.forward, FOV, Range))
                 {
                     _foundedEnemy = true;
                     _foundEnemy = otherCharacter.gameObject;
@@ -91,17 +92,17 @@ namespace NetdShooting.GamePlay
             _foundEnemy = null;
         }
 
-        private bool insideFOV(GameObject targetTemp, GameObject goTemp, Vector3 direction, float angleTemp, float distanceTemp)
-        {
-            Vector3 distanceToPlayer = targetTemp.transform.position - (goTemp.transform.transform.position - (goTemp.transform.transform.forward * 0.5f));
-            float angleToPlayer = Vector3.Angle(distanceToPlayer, direction.normalized);
-            float finalDistanceToPlayer = distanceToPlayer.magnitude;
+        //private bool insideFOV(GameObject targetTemp, GameObject goTemp, Vector3 direction, float angleTemp, float distanceTemp)
+        //{
+        //    Vector3 distanceToPlayer = targetTemp.transform.position - (goTemp.transform.transform.position - (goTemp.transform.transform.forward * 0.5f));
+        //    float angleToPlayer = Vector3.Angle(distanceToPlayer, direction.normalized);
+        //    float finalDistanceToPlayer = distanceToPlayer.magnitude;
 
-            if (angleToPlayer <= angleTemp / 2 & finalDistanceToPlayer <= distanceTemp)
-                return true;
+        //    if (angleToPlayer <= angleTemp / 2 & finalDistanceToPlayer <= distanceTemp)
+        //        return true;
 
-            return false;
-        }
+        //    return false;
+        //}
 
         private void OnDrawGizmosSelected()
         {
@@ -164,9 +165,14 @@ namespace NetdShooting.GamePlay
             this.gameObject.transform.rotation = _lastRotation;
         }
 
-        public void Attack()
+        public void PassAttack()
         {
-            _character.Attack();
+            _character.PassAttack();
+        }
+
+        public void ReleaseAttack()
+        {
+            _character.ReleaseAttack();
         }
 
         public bool GetFoundedEnemy()

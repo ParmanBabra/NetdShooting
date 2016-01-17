@@ -124,5 +124,17 @@ namespace NetdShooting.Core
                 return false;
             return true;
         }
+
+        public static bool InsideFOV(this GameObject source, GameObject targetTemp, Vector3 direction, float angleTemp, float distanceTemp)
+        {
+            Vector3 distanceToPlayer = targetTemp.transform.position - (source.transform.transform.position - (source.transform.transform.forward * 0.5f));
+            float angleToPlayer = Vector3.Angle(distanceToPlayer, direction.normalized);
+            float finalDistanceToPlayer = distanceToPlayer.magnitude;
+
+            if (angleToPlayer <= angleTemp / 2 & finalDistanceToPlayer <= distanceTemp)
+                return true;
+
+            return false;
+        }
     }
 }

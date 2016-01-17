@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using NetdShooting.Core;
 using System.Collections;
 
 namespace NetdShooting.GamePlay
@@ -42,7 +43,7 @@ namespace NetdShooting.GamePlay
                 if (character.Team == OwnerSkill.Team)
                     continue;
 
-                var objInsideFOV = insideFOV(character.gameObject, this.gameObject, direction, FOV, Range);
+                var objInsideFOV = gameObject.InsideFOV(character.gameObject, direction, FOV, Range);
                 var objPassDistance = checkDistance(character.gameObject, this.gameObject);
 
                 if (objInsideFOV || objPassDistance)

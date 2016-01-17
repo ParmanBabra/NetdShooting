@@ -7,6 +7,7 @@ using System;
 namespace NetdShooting.GamePlay
 {
     [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Animator))]
     [AddComponentMenu("Game Play/Character")]
     public class Character : MonoBehaviour
     {
@@ -49,10 +50,12 @@ namespace NetdShooting.GamePlay
         // Use this for initialization
         public void Start()
         {
+            var anime = GetComponent<Animator>();
+
             switch (AttackType)
             {
                 case AttackType.Malee:
-                    _attack = new MaleeAttack(this);
+                    _attack = new MaleeAttack(this, anime);
                     break;
                 case AttackType.Range:
                     _attack = new RangeAttack(this);
@@ -150,9 +153,19 @@ namespace NetdShooting.GamePlay
             }
         }
 
-        public bool Attack()
+        public void OnDealDamage()
         {
-            return _attack.Attacking(Time.deltaTime);
+
+        }
+
+        public void PassAttack()
+        {
+            _attack.PassAttacking(Time.deltaTime);
+        }
+
+        public void ReleaseAttack()
+        {
+            _attack.ReleaseAttack(Time.deltaTime);
         }
     }
 

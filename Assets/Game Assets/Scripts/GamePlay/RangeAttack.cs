@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using NetdShooting.Core;
+using System;
 
 namespace NetdShooting.GamePlay
 {
@@ -20,7 +21,27 @@ namespace NetdShooting.GamePlay
             _maxCoolDown = character.AttackSpeed;
         }
 
-        public bool Attacking(float daltaTime)
+        private Damage CreateDmage()
+        {
+            Damage damage = new GamePlay.Damage();
+            damage.DamageType = DamageType.Physic;
+            damage.During = 0;
+            damage.Effects = new SkillEffect[0];
+            damage.HitDamage = UnityEngine.Random.Range(_character.MinAttack, _character.MaxAttack);
+            return damage;
+        }
+
+        private UnityEngine.GameObject CreateBullet()
+        {
+            return (GameObject)UnityEngine.Object.Instantiate(_character.BulletPrefab, _muzzle.transform.position, _muzzle.transform.rotation);
+        }
+
+        private bool canAttack()
+        {
+            return _coolDown <= 0;
+        }
+
+        public bool PassAttacking(float daltaTime)
         {
             _coolDown -= daltaTime;
 
@@ -47,24 +68,9 @@ namespace NetdShooting.GamePlay
             return true;
         }
 
-        private Damage CreateDmage()
+        public bool ReleaseAttack(float daltaTime)
         {
-            Damage damage = new GamePlay.Damage();
-            damage.DamageType = DamageType.Physic;
-            damage.During = 0;
-            damage.Effects = new SkillEffect[0];
-            damage.HitDamage = Random.Range(_character.MinAttack, _character.MaxAttack);
-            return damage;
-        }
-
-        private UnityEngine.GameObject CreateBullet()
-        {
-            return (GameObject)UnityEngine.Object.Instantiate(_character.BulletPrefab, _muzzle.transform.position, _muzzle.transform.rotation);
-        }
-
-        private bool canAttack()
-        {
-            return _coolDown <= 0;
+            return true;
         }
     }
 }

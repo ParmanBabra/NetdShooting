@@ -7,34 +7,26 @@ namespace NetdShooting.GamePlay
     public class MaleeAttack : IAttack
     {
         private Character _character;
+        private Animator _anime;
 
-        private float _coolDown;
-        private float _maxCoolDown;
-
-        public MaleeAttack(Character character)
+        public MaleeAttack(Character character, Animator anime)
         {
             _character = character;
-            _maxCoolDown = character.AttackSpeed;
+            _anime = anime;
         }
 
-        public bool Attacking(float daltaTime)
+
+
+        public bool PassAttacking(float daltaTime)
         {
-            _coolDown -= daltaTime;
-
-            if (!canAttack())
-                return false;
-
-            Debug.Log("Attacking");
-
-            //Update Cooldown
-            if (_coolDown <= 0)
-                _coolDown = _maxCoolDown;
+            _anime.SetBool("Attacking", true);
             return true;
         }
 
-        private bool canAttack()
+        public bool ReleaseAttack(float daltaTime)
         {
-            return _coolDown <= 0;
+            _anime.SetBool("Attacking", false);
+            return true;
         }
     }
 }

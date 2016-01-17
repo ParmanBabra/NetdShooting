@@ -2,18 +2,21 @@
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 
-namespace NordShooter.GamePlay
+namespace NetdShooting.GamePlay
 {
-    
+    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Character))]
     public class PlayerMovement : MonoBehaviour
     {
 
-        public float speed = 6f;            // The speed that the player will move at.
+        float speed = 6f;            // The speed that the player will move at.
 
 
         Vector3 movement;                   // The vector to store the direction of the player's movement.
         Animator anim;                      // Reference to the animator component.
         Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
+        Character character;
 #if !MOBILE_INPUT
         int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
         float camRayLength = 100f;          // The length of the ray from the camera into the scene.
@@ -29,6 +32,8 @@ namespace NordShooter.GamePlay
             // Set up references.
             anim = GetComponent<Animator>();
             playerRigidbody = GetComponent<Rigidbody>();
+            character = GetComponent<Character>();
+            speed = character.Speed;
         }
 
 
@@ -106,15 +111,21 @@ namespace NordShooter.GamePlay
             }
 #endif
         }
-
+        void OnDrawGizmos()
+        {
+            //Gizmos.color = Color.red;
+            //Gizmos.DrawRay(this.gameObject.transform.position, this.gameObject.transform.rotation.eulerAngles * 20.0f);
+        }
 
         void Animating(float h, float v)
         {
-            // Create a boolean that is true if either of the input axes is non-zero.
-            bool walking = h != 0f || v != 0f;
+            var moveDirection = new Vector3(h, 0.0f, v);
+            var animationDirection = transform.InverseTransformDirection(moveDirection);
+            animationDirection.Normalize();
 
             // Tell the animator whether or not the player is walking.
-            anim.SetBool("IsWalking", walking);
+            anim.SetFloat("ForwadMovement", animationDirection.z);
+            anim.SetFloat("SideMovement", animationDirection.x);
         }
     }
 }

@@ -13,7 +13,12 @@ namespace NetdShooting.GamePlay
             _character = character;
         }
 
-        public bool Attacking(float daltaTime)
+        public bool PassAttacking(float daltaTime)
+        {
+            return true;
+        }
+
+        public bool ReleaseAttack(float daltaTime)
         {
             return true;
         }

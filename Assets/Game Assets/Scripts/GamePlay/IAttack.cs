@@ -5,6 +5,8 @@ namespace NetdShooting.GamePlay
 {
     public interface IAttack
     {
-        bool Attacking(float daltaTime);
+        bool PassAttacking(float daltaTime);
+
+        bool ReleaseAttack(float daltaTime);
     }
 }
