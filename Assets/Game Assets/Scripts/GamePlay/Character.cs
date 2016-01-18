@@ -34,10 +34,16 @@ namespace NetdShooting.GamePlay
         public GameObject BulletPrefab;
         private GameObject _muzzle;
 
+        [Header("Malee Attacking")]
+        public float FOV;
+        public float Range;
+
         IAttack _attack;
 
         Dictionary<Type, ApplyEffect> _appledEffects;
         List<ApplyEffect> _stackEffect;
+
+        CharacterManager _characterManager = GameHelper.GetCharacterManager();
 
         class ApplyEffect
         {
@@ -153,9 +159,29 @@ namespace NetdShooting.GamePlay
             }
         }
 
-        public void OnDealDamage()
+        public void OnHit(int combo)
         {
+            foreach (Character other in _characterManager.Characters)
+            {
+                if (other.Team == Team)
+                    continue;
 
+                if (gameObject.InsideFOV(other.gameObject,
+                                     transform.forward,
+                                     FOV,
+                                     Range))
+                {
+                    Damage damage = new Damage();
+                    damage.DamageType = DamageType.Physic;
+                    damage.HitDamage = UnityEngine.Random.Range(this.MinAttack, this.MaxAttack);
+                    other.DealDamage(damage);
+                }
+            }
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.DrawFrustum
         }
 
         public void PassAttack()
@@ -168,5 +194,4 @@ namespace NetdShooting.GamePlay
             _attack.ReleaseAttack(Time.deltaTime);
         }
     }
-
 }
