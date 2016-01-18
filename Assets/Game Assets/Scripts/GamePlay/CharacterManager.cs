@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using System;
 
@@ -8,17 +9,28 @@ namespace NetdShooting.GamePlay
     [AddComponentMenu("Game Play/Character Manager")]
     public class CharacterManager : MonoBehaviour
     {
-        public List<Character> Characters { get; set; }
+        private List<Character> _characters;
+        public List<Character> Characters
+        {
+            get
+            {
+                if (_characters == null)
+                {
+                    return new List<Character>();
+                }
+                return _characters.ToList();
+            }
+        }
 
         // Use this for initialization
         public void Start()
         {
             this.gameObject.tag = "Character Manager";
 
-            if (Characters == null)
-                Characters = new List<Character>();
+            if (_characters == null)
+                _characters = new List<Character>();
 
-            Characters.Clear();
+            _characters.Clear();
 
             var players = GameObject.FindGameObjectsWithTag("Player");
             var Enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -27,15 +39,21 @@ namespace NetdShooting.GamePlay
             {
                 var character = go.GetComponent<Character>();
                 if (character != null)
-                    Characters.Add(character);
+                    _characters.Add(character);
             }
 
             foreach (var go in Enemies)
             {
                 var character = go.GetComponent<Character>();
                 if (character != null)
-                    Characters.Add(character);
+                    _characters.Add(character);
             }
+        }
+
+        public void DestoryCharacter(Character character)
+        {
+            _characters.Remove(character);
+            GameObject.DestroyObject(character.gameObject);
         }
     }
 }

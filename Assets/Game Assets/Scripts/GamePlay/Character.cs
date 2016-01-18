@@ -168,9 +168,9 @@ namespace NetdShooting.GamePlay
 
         public void OnHit(int combo)
         {
-            var list = _characterManager.Characters.ToArray();
-            foreach (Character other in list)
+            foreach (Character other in _characterManager.Characters)
             {
+
                 if (other.Team == Team)
                     continue;
 
@@ -189,8 +189,7 @@ namespace NetdShooting.GamePlay
 
         public void Die()
         {
-            _characterManager.Characters.Remove(this);
-            GameObject.DestroyObject(this.gameObject);
+            _characterManager.DestoryCharacter(this);
         }
 
         private void OnDrawGizmosSelected()
