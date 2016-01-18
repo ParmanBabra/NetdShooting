@@ -39,11 +39,12 @@ namespace NetdShooting.GamePlay
         public float Range;
 
         IAttack _attack;
+        IDeathable _deathable;
 
         Dictionary<Type, ApplyEffect> _appledEffects;
         List<ApplyEffect> _stackEffect;
 
-        CharacterManager _characterManager = GameHelper.GetCharacterManager();
+        CharacterManager _characterManager;
 
         class ApplyEffect
         {
@@ -71,11 +72,14 @@ namespace NetdShooting.GamePlay
                     break;
             }
 
+            _deathable = new PlayerDeathable(this, anime);
+
             _appledEffects = new Dictionary<Type, ApplyEffect>();
             _stackEffect = new List<ApplyEffect>();
 
             ManaPoint = MaxManaPoint;
             HitPoint = MaxHitPoint;
+            _characterManager = GameHelper.GetCharacterManager();
         }
 
         public void Update()
@@ -157,11 +161,15 @@ namespace NetdShooting.GamePlay
                     }
                 }
             }
+
+            if (HitPoint <= 0)
+                _deathable.Death();
         }
 
         public void OnHit(int combo)
         {
-            foreach (Character other in _characterManager.Characters)
+            var list = _characterManager.Characters.ToArray();
+            foreach (Character other in list)
             {
                 if (other.Team == Team)
                     continue;
@@ -179,9 +187,16 @@ namespace NetdShooting.GamePlay
             }
         }
 
+        public void Die()
+        {
+            _characterManager.Characters.Remove(this);
+            GameObject.DestroyObject(this.gameObject);
+        }
+
         private void OnDrawGizmosSelected()
         {
-            Gizmos.DrawFrustum
+            Gizmos.color = Color.red;
+            MyGizmos.DrawFOV(transform.position + new Vector3(0, 0.5f, 0), transform.forward, FOV, Range);
         }
 
         public void PassAttack()

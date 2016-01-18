@@ -65,28 +65,7 @@ namespace NetdShooting.GamePlay
             var direction = Quaternion.Euler(rotate) * Vector3.forward;
 
             Gizmos.color = Color.red;
-            float arrowHeadLength = 0.25f;
-            float arrowHeadAngle = 20.0f;
-
-            Gizmos.DrawRay(op, direction.normalized * Range);
-
-            Gizmos.color = Color.yellow;
-
-            Vector3 right = Quaternion.LookRotation(direction) * Quaternion.Euler(0, 180 + arrowHeadAngle, 0) * new Vector3(0, 0, 1);
-            Vector3 left = Quaternion.LookRotation(direction) * Quaternion.Euler(0, 180 - arrowHeadAngle, 0) * new Vector3(0, 0, 1);
-            Gizmos.DrawRay(op + direction.normalized * Range, right * arrowHeadLength);
-            Gizmos.DrawRay(op + direction.normalized * Range, left * arrowHeadLength);
-
-
-            Gizmos.color = Color.yellow;
-
-            var leftRayRotation = Quaternion.AngleAxis(-FOV / 2, Vector3.up);
-            var rightRayRotation = Quaternion.AngleAxis(FOV / 2, Vector3.up);
-
-            Vector3 leftRayDirection = leftRayRotation * direction;
-            Vector3 rightRayDirection = rightRayRotation * direction;
-            Gizmos.DrawRay(op, leftRayDirection * Range);
-            Gizmos.DrawRay(op, rightRayDirection * Range);
+            MyGizmos.DrawFOV(op, direction, FOV, Range);
         }
 
         private void dealDamage(Character target)

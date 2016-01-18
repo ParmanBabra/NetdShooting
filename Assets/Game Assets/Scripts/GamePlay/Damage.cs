@@ -8,5 +8,10 @@ namespace NetdShooting.GamePlay
         public int HitDamage { get; set; }
         public float During { get; set; }
         public SkillEffect[] Effects { get; set; }
+
+        public Damage()
+        {
+            Effects = new SkillEffect[0];
+        }
     }
 }

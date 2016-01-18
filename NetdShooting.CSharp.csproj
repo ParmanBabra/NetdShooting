@@ -131,9 +131,11 @@
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\EffectUnit.cs" />
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\GameHelper.cs" />
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\IAttack.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\IDeathable.cs" />
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\IProjection.cs" />
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\MaleeAttack.cs" />
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\NoneAttack.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\PlayerDeathable.cs" />
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\PlayerMovement.cs" />
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\Projection.cs" />
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\RangeAttack.cs" />
