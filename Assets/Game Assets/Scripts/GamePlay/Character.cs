@@ -163,28 +163,15 @@ namespace NetdShooting.GamePlay
             }
 
             if (HitPoint <= 0)
+            {
+                SendMessage("Death");
                 _deathable.Death();
+            }
         }
 
         public void OnHit(int combo)
         {
-            foreach (Character other in _characterManager.Characters)
-            {
-
-                if (other.Team == Team)
-                    continue;
-
-                if (gameObject.InsideFOV(other.gameObject,
-                                     transform.forward,
-                                     FOV,
-                                     Range))
-                {
-                    Damage damage = new Damage();
-                    damage.DamageType = DamageType.Physic;
-                    damage.HitDamage = UnityEngine.Random.Range(this.MinAttack, this.MaxAttack);
-                    other.DealDamage(damage);
-                }
-            }
+            _attack.OnHit(combo);
         }
 
         public void Die()

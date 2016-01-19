@@ -4,6 +4,7 @@ using NetdShooting.Core;
 
 namespace NetdShooting.GamePlay
 {
+    [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(NavMeshAgent))]
     [RequireComponent(typeof(Character))]
     [RequireComponent(typeof(Rigidbody))]
@@ -28,16 +29,15 @@ namespace NetdShooting.GamePlay
         private GameObject _foundEnemy;
         private CharacterManager _characterManager;
 
-        public void Awake()
-        {
-            // Set up references.
-            _agent = GetComponent<NavMeshAgent>();
-            _characterManager = GameHelper.GetCharacterManager();
-            _character = this.gameObject.GetComponent<Character>();
-        }
+        private bool _death;
 
         public void Start()
         {
+            _agent = GetComponent<NavMeshAgent>();
+            _anim = GetComponent<Animator>();
+            _characterManager = GameHelper.GetCharacterManager();
+            _character = this.gameObject.GetComponent<Character>();
+
             _agent.speed = _character.Speed;
             _startUpLocation = this.gameObject.transform.position;
         }
@@ -45,10 +45,29 @@ namespace NetdShooting.GamePlay
         public void Update()
         {
             Detact();
+
+            Animating(_agent.velocity.x, _agent.velocity.z);
+        }
+
+        private void Animating(float h, float v)
+        {
+            if (_death)
+                return;
+
+            var moveDirection = new Vector3(h, 0.0f, v);
+            var animationDirection = transform.InverseTransformDirection(moveDirection);
+            animationDirection.Normalize();
+
+            // Tell the animator whether or not the player is walking.
+            _anim.SetFloat("ForwadMovement", animationDirection.z);
+            _anim.SetFloat("SideMovement", animationDirection.x);
         }
 
         public void RandomMove()
         {
+            if (_death)
+                return;
+
             if (CheckAreadyToRandomTarget())
             {
                 var location = CalculateRandomLocation();
@@ -92,18 +111,6 @@ namespace NetdShooting.GamePlay
             _foundEnemy = null;
         }
 
-        //private bool insideFOV(GameObject targetTemp, GameObject goTemp, Vector3 direction, float angleTemp, float distanceTemp)
-        //{
-        //    Vector3 distanceToPlayer = targetTemp.transform.position - (goTemp.transform.transform.position - (goTemp.transform.transform.forward * 0.5f));
-        //    float angleToPlayer = Vector3.Angle(distanceToPlayer, direction.normalized);
-        //    float finalDistanceToPlayer = distanceToPlayer.magnitude;
-
-        //    if (angleToPlayer <= angleTemp / 2 & finalDistanceToPlayer <= distanceTemp)
-        //        return true;
-
-        //    return false;
-        //}
-
         private void OnDrawGizmosSelected()
         {
             var op = this.gameObject.transform.position - (this.gameObject.transform.forward * 0.5f);
@@ -119,6 +126,9 @@ namespace NetdShooting.GamePlay
 
         public void Following(GameObject target)
         {
+            if (_death)
+                return;
+
             var distance = Mathf.Max(GetAttackDistance() / 2, _agent.radius * 4);
 
             var moveingPosition = Vector3.MoveTowards(this.gameObject.transform.position, target.transform.position, distance);
@@ -128,6 +138,9 @@ namespace NetdShooting.GamePlay
 
         public void LookAt(GameObject target)
         {
+            if (_death)
+                return;
+
             Vector3 lookAtPos;
 
             lookAtPos = target.transform.position;
@@ -146,6 +159,9 @@ namespace NetdShooting.GamePlay
 
         public void PassAttack()
         {
+            if (_death)
+                return;
+
             _character.PassAttack();
         }
 
@@ -175,6 +191,11 @@ namespace NetdShooting.GamePlay
                 return 0.0f;
 
             return _character.AttackDistance;
+        }
+
+        public void Death()
+        {
+            _death = true;
         }
     }
 }

@@ -72,5 +72,10 @@ namespace NetdShooting.GamePlay
         {
             return true;
         }
+
+        public void OnHit(int combo)
+        {
+            //throw new NotImplementedException();
+        }
     }
 }

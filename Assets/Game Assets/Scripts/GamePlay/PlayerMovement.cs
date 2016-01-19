@@ -13,27 +13,27 @@ namespace NetdShooting.GamePlay
         float speed = 6f;            // The speed that the player will move at.
 
 
-        Vector3 movement;                   // The vector to store the direction of the player's movement.
-        Animator anim;                      // Reference to the animator component.
-        Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
-        Character character;
+        Vector3 _movement;                   // The vector to store the direction of the player's movement.
+        Animator _anim;                      // Reference to the animator component.
+        Rigidbody _playerRigidbody;          // Reference to the player's rigidbody.
+        Character _character;
 #if !MOBILE_INPUT
-        int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
-        float camRayLength = 100f;          // The length of the ray from the camera into the scene.
+        int _floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
+        float _camRayLength = 100f;          // The length of the ray from the camera into the scene.
 #endif
 
         void Awake()
         {
 #if !MOBILE_INPUT
             // Create a layer mask for the floor layer.
-            floorMask = LayerMask.GetMask("Floor");
+            _floorMask = LayerMask.GetMask("Floor");
 #endif
 
             // Set up references.
-            anim = GetComponent<Animator>();
-            playerRigidbody = GetComponent<Rigidbody>();
-            character = GetComponent<Character>();
-            speed = character.Speed;
+            _anim = GetComponent<Animator>();
+            _playerRigidbody = GetComponent<Rigidbody>();
+            _character = GetComponent<Character>();
+            speed = _character.Speed;
         }
 
 
@@ -57,13 +57,13 @@ namespace NetdShooting.GamePlay
         void Move(float h, float v)
         {
             // Set the movement vector based on the axis input.
-            movement.Set(h, 0f, v);
+            _movement.Set(h, 0f, v);
 
             // Normalise the movement vector and make it proportional to the speed per second.
-            movement = movement.normalized * speed * Time.deltaTime;
+            _movement = _movement.normalized * speed * Time.deltaTime;
 
             // Move the player to it's current position plus the movement.
-            playerRigidbody.MovePosition(transform.position + movement);
+            _playerRigidbody.MovePosition(transform.position + _movement);
         }
 
 
@@ -77,7 +77,7 @@ namespace NetdShooting.GamePlay
             RaycastHit floorHit;
 
             // Perform the raycast and if it hits something on the floor layer...
-            if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
+            if (Physics.Raycast(camRay, out floorHit, _camRayLength, _floorMask))
             {
                 // Create a vector from the player to the point on the floor the raycast from the mouse hit.
                 Vector3 playerToMouse = floorHit.point - transform.position;
@@ -89,7 +89,7 @@ namespace NetdShooting.GamePlay
                 Quaternion newRotatation = Quaternion.LookRotation(playerToMouse);
 
                 // Set the player's rotation to this new rotation.
-                playerRigidbody.MoveRotation(newRotatation);
+                _playerRigidbody.MoveRotation(newRotatation);
             }
 #else
 
@@ -124,8 +124,8 @@ namespace NetdShooting.GamePlay
             animationDirection.Normalize();
 
             // Tell the animator whether or not the player is walking.
-            anim.SetFloat("ForwadMovement", animationDirection.z);
-            anim.SetFloat("SideMovement", animationDirection.x);
+            _anim.SetFloat("ForwadMovement", animationDirection.z);
+            _anim.SetFloat("SideMovement", animationDirection.x);
         }
     }
 }

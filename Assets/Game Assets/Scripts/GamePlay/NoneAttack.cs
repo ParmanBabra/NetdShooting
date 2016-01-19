@@ -13,6 +13,11 @@ namespace NetdShooting.GamePlay
             _character = character;
         }
 
+        public void OnHit(int combo)
+        {
+            //throw new NotImplementedException();
+        }
+
         public bool PassAttacking(float daltaTime)
         {
             return true;

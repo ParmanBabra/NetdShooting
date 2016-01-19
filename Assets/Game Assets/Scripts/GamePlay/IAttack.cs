@@ -8,5 +8,7 @@ namespace NetdShooting.GamePlay
         bool PassAttacking(float daltaTime);
 
         bool ReleaseAttack(float daltaTime);
+
+        void OnHit(int combo);
     }
 }
