@@ -45,7 +45,7 @@ namespace NetdShooting.GamePlay
         public void Update()
         {
             Detact();
-
+            
             Animating(_agent.velocity.x, _agent.velocity.z);
         }
 
@@ -195,6 +195,7 @@ namespace NetdShooting.GamePlay
 
         public void Death()
         {
+            _agent.Stop();
             _death = true;
         }
     }
