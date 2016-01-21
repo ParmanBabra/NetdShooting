@@ -37,36 +37,24 @@ namespace NetdShooting.GamePlay
 
             if (_muzzle == null)
                 throw new System.Exception("Can't find muzzle.");
-
-
         }
 
-        protected override void ProcessUseSkill(float daltaTime)
+        protected override void ProcessActionSkill()
         {
-            //Play animation
+            base.ProcessActionSkill();
 
-
-            //Create Bullet
             var bulletGO = (GameObject)UnityEngine.Object.Instantiate(BulletPrefab, _muzzle.transform.position, _muzzle.transform.rotation);
             IProjection projection;
 
             if (!bulletGO.TryGetComponent<IProjection>(out projection))
                 Debug.LogWarning("Can't get projection for bullet prefab");
 
-            var damage = CreateDmage();
+            var damage = CreateDmage(DamageType, Damage, During);
             projection.SetDamage(damage, AreaDamage, Radius);
             projection.SetOwner(OwnerSkill);
             projection.MovingSpeed = MovingSpeed;
         }
 
-        private Damage CreateDmage()
-        {
-            Damage damage = new GamePlay.Damage();
-            damage.DamageType = DamageType;
-            damage.During = During;
-            damage.Effects = Effects;
-            damage.HitDamage = Damage;
-            return damage;
-        }
+
     }
 }

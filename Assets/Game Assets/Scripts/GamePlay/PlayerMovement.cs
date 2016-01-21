@@ -17,6 +17,8 @@ namespace NetdShooting.GamePlay
         Animator _anim;                      // Reference to the animator component.
         Rigidbody _playerRigidbody;          // Reference to the player's rigidbody.
         Character _character;
+
+        bool _enableMove = true;
 #if !MOBILE_INPUT
         int _floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
         float _camRayLength = 100f;          // The length of the ray from the camera into the scene.
@@ -36,12 +38,11 @@ namespace NetdShooting.GamePlay
             speed = _character.Speed;
         }
 
-
         void FixedUpdate()
         {
             // Store the input axes.
-            float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-            float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
+            float h = _enableMove ? CrossPlatformInputManager.GetAxisRaw("Horizontal") : 0;
+            float v = _enableMove ? CrossPlatformInputManager.GetAxisRaw("Vertical") : 0;
 
             // Move the player around the scene.
             Move(h, v);
@@ -126,6 +127,16 @@ namespace NetdShooting.GamePlay
             // Tell the animator whether or not the player is walking.
             _anim.SetFloat("ForwadMovement", animationDirection.z);
             _anim.SetFloat("SideMovement", animationDirection.x);
+        }
+
+        void DisableMovement()
+        {
+            _enableMove = false;
+        }
+
+        void EnableMovement()
+        {
+            _enableMove = true;
         }
     }
 }

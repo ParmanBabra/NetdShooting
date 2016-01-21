@@ -168,6 +168,8 @@ namespace NetdShooting.GamePlay
                 _deathable.Death();
             }
 
+
+
             Debug.Log(string.Format("{0} take damage {1}", this.name, damage.HitDamage));
         }
 
@@ -195,6 +197,16 @@ namespace NetdShooting.GamePlay
         public void ReleaseAttack()
         {
             _attack.ReleaseAttack(Time.deltaTime);
+        }
+
+        public void DisableMove()
+        {
+            this.SendMessage("DisableMovement");
+        }
+
+        public void EnableMove()
+        {
+            this.SendMessage("EnableMovement");
         }
     }
 }

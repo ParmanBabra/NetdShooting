@@ -31,8 +31,18 @@ namespace NetdShooting.GamePlay
 
         protected override void ProcessUseSkill(float daltaTime)
         {
-            //Play animation
+            base.ProcessUseSkill(daltaTime);
+            OwnerSkill.DisableMove();
+        }
 
+        protected override void ProcessEndUseSkill()
+        {
+            base.ProcessEndUseSkill();
+            OwnerSkill.EnableMove();
+        }
+
+        protected override void ProcessActionSkill()
+        {
             //Check Deal Damage
             bool dealed = false;
             var rotate = this.gameObject.transform.eulerAngles;
@@ -59,7 +69,6 @@ namespace NetdShooting.GamePlay
 
         protected override void OnDrawActionGizmos()
         {
-
             var op = this.gameObject.transform.position - (this.gameObject.transform.forward * 0.5f);
             var rotate = this.gameObject.transform.eulerAngles;
             var direction = Quaternion.Euler(rotate) * Vector3.forward;
@@ -80,11 +89,7 @@ namespace NetdShooting.GamePlay
             }
 
             var hitDamage = Random.Range(minDamage, maxDamage);
-            Damage damage = new GamePlay.Damage();
-            damage.HitDamage = hitDamage;
-            damage.DamageType = DamageType;
-            damage.Effects = Effects;
-            damage.During = During;
+            Damage damage = CreateDmage(DamageType, hitDamage, During);
 
             target.DealDamage(damage);
         }
@@ -92,18 +97,6 @@ namespace NetdShooting.GamePlay
         private bool checkDistance(GameObject targetTemp, GameObject goTemp)
         {
             return Vector3.Distance(targetTemp.transform.position, goTemp.transform.position) < LowDistance;
-        }
-
-        private bool insideFOV(GameObject targetTemp, GameObject goTemp, Vector3 direction, float angleTemp, float distanceTemp)
-        {
-            Vector3 distanceToPlayer = targetTemp.transform.position - (goTemp.transform.transform.position - (goTemp.transform.transform.forward * 0.5f));
-            float angleToPlayer = Vector3.Angle(distanceToPlayer, direction.normalized);
-            float finalDistanceToPlayer = distanceToPlayer.magnitude;
-
-            if (angleToPlayer <= angleTemp / 2 & finalDistanceToPlayer <= distanceTemp)
-                return true;
-
-            return false;
         }
     }
 }

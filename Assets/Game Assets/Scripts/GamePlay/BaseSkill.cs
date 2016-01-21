@@ -12,6 +12,7 @@ namespace NetdShooting.GamePlay
         public float MaxCoolDown;
         public int Level;
         public int MPCost;
+        public int AnimationNumber;
         public SkillType SkillType { get; protected set; }
 
         [Header("Effects")]
@@ -23,10 +24,12 @@ namespace NetdShooting.GamePlay
         public bool DrawGizmosOnSelect;
 
         protected Character OwnerSkill { get; set; }
+        protected Animator Animator { get; private set; }
 
         public void Start()
         {
             OwnerSkill = this.transform.parent.gameObject.GetComponent<Character>();
+            Animator = this.OwnerSkill.GetComponent<Animator>();
 
             if (OwnerSkill == null)
                 throw new System.Exception("Can't Find Owner Skill");
@@ -60,23 +63,54 @@ namespace NetdShooting.GamePlay
             ProcessSkill(deltaTime);
         }
 
-        public void Use()
+        public bool Use()
         {
             if (!canUse())
-                return;
+                return false;
 
             ProcessUseSkill(Time.deltaTime);
 
             CoolDown = MaxCoolDown;
+
+            return true;
         }
 
-        protected virtual void ProcessUseSkill(float daltaTime) { }
+        public void ActionSkill()
+        {
+            ProcessActionSkill();
+            Animator.SetInteger("UseSkill", 0);
+        }
+
+        public void EndUseSkill()
+        {
+            ProcessEndUseSkill();
+        }
+
+        protected virtual void ProcessUseSkill(float daltaTime)
+        {
+            Animator.SetInteger("UseSkill", this.AnimationNumber);
+        }
 
         protected virtual void ProcessSkill(float daltaTime) { }
+
+        protected virtual void ProcessActionSkill() { }
+
+        protected virtual void ProcessEndUseSkill() { }
 
         protected virtual void OnDrawActionGizmos()
         {
 
+        }
+
+        protected Damage CreateDmage(DamageType type, int hitDamage, float during)
+        {
+            Damage damage = new GamePlay.Damage();
+            damage.DamageType = type;
+            damage.Effects = Effects;
+            damage.HitDamage = hitDamage;
+            damage.Effects = Effects;
+            damage.During = during;
+            return damage;
         }
 
         private bool canUse()
