@@ -10,24 +10,21 @@ namespace NetdShooting.GamePlay
         CharacterManager _characterManager;
         Character _character;
         Animator _anime;
-        int _team;
-        float _fov;
-        float _range;
 
-        int _minAttack;
-        int _maxAttack;
 
         public MaleeAttack(Character character, Animator anime)
         {
             _characterManager = GameHelper.GetCharacterManager();
             _character = character;
             _anime = anime;
-            _team = _character.Team;
+        }
 
-            _fov = _character.FOV;
-            _range = _character.Range;
-            _minAttack = _character.MinAttack;
-            _maxAttack = _character.MaxAttack;
+        private Damage CreateDmage()
+        {
+            Damage damage = new Damage();
+            damage.DamageType = DamageType.Physic;
+            damage.HitDamage = UnityEngine.Random.Range(_character.MinAttack, _character.MaxAttack);
+            return damage;
         }
 
 
@@ -35,17 +32,15 @@ namespace NetdShooting.GamePlay
         {
             foreach (Character other in _characterManager.Characters)
             {
-                if (other.Team == _team)
+                if (other.Team == _character.Team)
                     continue;
 
                 if (_character.gameObject.InsideFOV(other.gameObject,
                                      _character.transform.forward,
-                                     _fov,
-                                     _range))
+                                     _character.FOV,
+                                     _character.Range))
                 {
-                    Damage damage = new Damage();
-                    damage.DamageType = DamageType.Physic;
-                    damage.HitDamage = UnityEngine.Random.Range(_minAttack, _maxAttack);
+                    Damage damage = CreateDmage();
                     other.DealDamage(damage);
                 }
             }

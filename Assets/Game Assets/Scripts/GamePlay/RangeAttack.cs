@@ -9,16 +9,18 @@ namespace NetdShooting.GamePlay
     {
         private Character _character;
         private GameObject _muzzle;
+        Animator _anime;
 
         private float _coolDown;
         private float _maxCoolDown;
 
 
-        public RangeAttack(Character character)
+        public RangeAttack(Character character, Animator anime)
         {
             _character = character;
             _muzzle = character.gameObject.FindMuzzle("Spawn Bullet");
             _maxCoolDown = character.AttackSpeed;
+            _anime = anime;
         }
 
         private Damage CreateDmage()
@@ -36,21 +38,21 @@ namespace NetdShooting.GamePlay
             return (GameObject)UnityEngine.Object.Instantiate(_character.BulletPrefab, _muzzle.transform.position, _muzzle.transform.rotation);
         }
 
-        private bool canAttack()
-        {
-            return _coolDown <= 0;
-        }
-
         public bool PassAttacking(float daltaTime)
         {
-            _coolDown -= daltaTime;
+            _anime.SetBool("Attacking", true);
+            return true;
+        }
 
-            if (!canAttack())
-                return false;
+        public bool ReleaseAttack(float daltaTime)
+        {
+            _anime.SetBool("Attacking", false);
+            return true;
+        }
 
-            //Play Animation
-
-            //Create Bullet
+        public void OnHit(int combo)
+        {
+            //throw new NotImplementedException();
             var bullet = CreateBullet();
             IProjection projection;
 
@@ -60,22 +62,6 @@ namespace NetdShooting.GamePlay
             var damage = CreateDmage();
             projection.SetDamage(damage);
             projection.SetOwner(_character);
-
-            //Update Cooldown
-            if (_coolDown <= 0)
-                _coolDown = _maxCoolDown;
-
-            return true;
-        }
-
-        public bool ReleaseAttack(float daltaTime)
-        {
-            return true;
-        }
-
-        public void OnHit(int combo)
-        {
-            //throw new NotImplementedException();
         }
     }
 }

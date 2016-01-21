@@ -65,7 +65,7 @@ namespace NetdShooting.GamePlay
                     _attack = new MaleeAttack(this, anime);
                     break;
                 case AttackType.Range:
-                    _attack = new RangeAttack(this);
+                    _attack = new RangeAttack(this, anime);
                     break;
                 default:
                     _attack = new NoneAttack(this);
@@ -167,6 +167,8 @@ namespace NetdShooting.GamePlay
                 SendMessage("Death");
                 _deathable.Death();
             }
+
+            Debug.Log(string.Format("{0} take damage {1}", this.name, damage.HitDamage));
         }
 
         public void OnHit(int combo)
