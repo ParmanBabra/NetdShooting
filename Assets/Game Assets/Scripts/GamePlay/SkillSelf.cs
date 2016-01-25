@@ -7,8 +7,16 @@ namespace NetdShooting.GamePlay
     [AddComponentMenu("Game Play/Skill Self")]
     public class SkillSelf : BaseSkill
     {
+        [Header("Skill Info")]
         public float MaxDuration;
         public float Duration;
+
+        [Header("Repeat")]
+        public bool RepeatApply;
+        public float RepeatMaxDuration;
+        public float RepeatDuration;
+
+
         private bool Using;
 
         public SkillSelf()
@@ -21,10 +29,15 @@ namespace NetdShooting.GamePlay
 
         }
 
-        protected override void ProcessSkill(float daltaTime)
+        protected override void UpdateSkill(float daltaTime)
         {
             if (!Using)
                 return;
+
+            if (RepeatApply)
+            {
+
+            }
 
             Duration = Mathf.Max(Duration - daltaTime, 0);
 

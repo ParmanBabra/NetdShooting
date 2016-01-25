@@ -19,7 +19,7 @@ namespace NetdShooting.GamePlay
 
         }
 
-        protected override void ProcessSkill(float daltaTime)
+        protected override void UpdateSkill(float daltaTime)
         {
             if (!IsOn)
                 return;
