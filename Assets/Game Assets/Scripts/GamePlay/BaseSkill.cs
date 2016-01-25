@@ -65,7 +65,7 @@ namespace NetdShooting.GamePlay
 
         public bool Use()
         {
-            if (!canUse())
+            if (!CanUse())
                 return false;
 
             ProcessUseSkill(Time.deltaTime);
@@ -93,9 +93,15 @@ namespace NetdShooting.GamePlay
 
         protected virtual void ProcessSkill(float daltaTime) { }
 
-        protected virtual void ProcessActionSkill() { }
+        protected virtual void ProcessActionSkill()
+        {
+            OwnerSkill.DisableMove();
+        }
 
-        protected virtual void ProcessEndUseSkill() { }
+        protected virtual void ProcessEndUseSkill()
+        {
+            OwnerSkill.EnableMove();
+        }
 
         protected virtual void OnDrawActionGizmos()
         {
@@ -113,7 +119,7 @@ namespace NetdShooting.GamePlay
             return damage;
         }
 
-        private bool canUse()
+        public bool CanUse()
         {
             return CoolDown <= 0;
         }

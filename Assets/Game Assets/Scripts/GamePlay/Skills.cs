@@ -11,7 +11,8 @@ namespace NetdShooting.GamePlay
         public FindMethod FindMethod;
         public int Count;
         private List<GameObject> _skills;
-        private Queue<BaseSkill> _usingSkill = new Queue<BaseSkill>();
+        private Queue<BaseSkill> _usingSkills = new Queue<BaseSkill>();
+        private BaseSkill _currentSkill;
 
 
         // Use this for initialization
@@ -53,14 +54,21 @@ namespace NetdShooting.GamePlay
 
         public void ActionSkill()
         {
-            var currentSkill = _usingSkill.Peek();
-            currentSkill.ActionSkill();
+            //var currentSkill = _usingSkills.Peek();
+            _currentSkill.ActionSkill();
         }
 
         public void EndUseSkill()
         {
-            var currentSkill = _usingSkill.Dequeue();
-            currentSkill.EndUseSkill();
+            //var currentSkill = _usingSkills.Dequeue();
+            _currentSkill.EndUseSkill();
+            _currentSkill = null;
+
+            if (_usingSkills.Count != 0)
+            {
+                _currentSkill = _usingSkills.Dequeue();
+                _currentSkill.Use();
+            }
         }
 
         private void UseGameObjectSkill(GameObject go)
@@ -71,12 +79,16 @@ namespace NetdShooting.GamePlay
                 Debug.LogWarning("Skill dosen't have base skill component.");
                 return;
             }
-            var successed = skill.Use();
+            if (!skill.CanUse())
+                return;
 
-            if (successed)
+            if (_currentSkill == null)
             {
-                _usingSkill.Enqueue(skill);
+                _currentSkill = skill;
+                _currentSkill.Use();
             }
+            else if (_usingSkills.Count >= 1 && _usingSkills.Peek() != skill)
+                _usingSkills.Enqueue(skill);
         }
 
         private string GetSkillName(GameObject go)

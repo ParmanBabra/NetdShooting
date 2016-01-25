@@ -29,17 +29,6 @@ namespace NetdShooting.GamePlay
             _characterManager = GameHelper.GetCharacterManager();
         }
 
-        protected override void ProcessUseSkill(float daltaTime)
-        {
-            base.ProcessUseSkill(daltaTime);
-            OwnerSkill.DisableMove();
-        }
-
-        protected override void ProcessEndUseSkill()
-        {
-            base.ProcessEndUseSkill();
-            OwnerSkill.EnableMove();
-        }
 
         protected override void ProcessActionSkill()
         {
