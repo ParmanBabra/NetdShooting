@@ -60,7 +60,7 @@ namespace NetdShooting.GamePlay
             var deltaTime = Time.deltaTime;
             CoolDown = Mathf.Max(CoolDown - deltaTime, 0);
 
-            ProcessSkill(deltaTime);
+            UpdateSkill(deltaTime);
         }
 
         public bool Use()
@@ -91,7 +91,7 @@ namespace NetdShooting.GamePlay
             Animator.SetInteger("UseSkill", this.AnimationNumber);
         }
 
-        protected virtual void ProcessSkill(float daltaTime) { }
+        protected virtual void UpdateSkill(float daltaTime) { }
 
         protected virtual void ProcessActionSkill()
         {
