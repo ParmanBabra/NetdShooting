@@ -14,9 +14,11 @@ namespace NetdShooting.GamePlay
         public int MPCost;
         public int AnimationNumber;
         public SkillType SkillType { get; protected set; }
-
-        [Header("Effects")]
         public SkillEffect[] Effects;
+
+        [Header("Effect")]
+        public GameObject FXEffect;
+        public string EffectSocketName;
 
 
         [Header("Debug")]
