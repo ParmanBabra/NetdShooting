@@ -20,6 +20,7 @@ namespace NetdShooting.GamePlay
         private bool Using;
 
         public SkillSelf()
+            : base()
         {
             this.SkillType = SkillType.Self;
         }
@@ -35,9 +36,7 @@ namespace NetdShooting.GamePlay
                 return;
 
             if (RepeatApply)
-            {
-
-            }
+                Repeating(daltaTime);
 
             Duration = Mathf.Max(Duration - daltaTime, 0);
 
@@ -50,8 +49,9 @@ namespace NetdShooting.GamePlay
             Using = false;
         }
 
-        protected override void ProcessUseSkill(float daltaTime)
+        protected override void ProcessActionSkill()
         {
+            base.ProcessActionSkill();
             Apply();
             Duration = MaxDuration;
             Using = true;
@@ -59,7 +59,7 @@ namespace NetdShooting.GamePlay
 
         private void Apply()
         {
-            //Play Animation
+            //Play Effect Animation
 
             foreach (var effect in Effects)
             {
@@ -69,12 +69,24 @@ namespace NetdShooting.GamePlay
 
         private void Unapply()
         {
-            //Play Animation
+            //Play Effect Animation
 
             foreach (var effect in Effects)
             {
                 effect.Unapply(OwnerSkill);
             }
+        }
+
+        private void Repeating(float daltaTime)
+        {
+            RepeatDuration = Mathf.Max(RepeatDuration - daltaTime, 0);
+
+            if (RepeatDuration != 0)
+                return;
+
+            Apply();
+
+            RepeatDuration = RepeatMaxDuration;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace NetdShooting.GamePlay
         public override void Apply(Character character)
         {
             _max = Calculate(character.MaxAttack);
-            _min = Calculate(character.MaxAttack);
+            _min = Calculate(character.MinAttack);
             character.MaxAttack += _max;
             character.MinAttack += _min;
         }

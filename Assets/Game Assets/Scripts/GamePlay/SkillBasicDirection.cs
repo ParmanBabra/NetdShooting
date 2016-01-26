@@ -24,6 +24,7 @@ namespace NetdShooting.GamePlay
         private CharacterManager _characterManager;
 
         public SkillBasicDirection()
+            : base()
         {
             this.SkillType = SkillType.Direction;
         }

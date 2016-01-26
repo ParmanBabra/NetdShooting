@@ -79,7 +79,14 @@ namespace NetdShooting.GamePlay
                 Debug.LogWarning("Skill dosen't have base skill component.");
                 return;
             }
-            if (!skill.CanUse())
+
+            if (!skill.CanUse)
+                return;
+
+            if (!skill.CoolDowning())
+                return;
+
+            if (!skill.HaveMP())
                 return;
 
             if (_currentSkill == null)

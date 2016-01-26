@@ -36,7 +36,6 @@ namespace NetdShooting.GamePlay
 
         [Header("Malee Attacking")]
         public float FOV;
-        public float Range;
 
         IAttack _attack;
         IDeathable _deathable;
@@ -168,8 +167,6 @@ namespace NetdShooting.GamePlay
                 _deathable.Death();
             }
 
-
-
             Debug.Log(string.Format("{0} take damage {1}", this.name, damage.HitDamage));
         }
 
@@ -186,7 +183,7 @@ namespace NetdShooting.GamePlay
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            MyGizmos.DrawFOV(transform.position + new Vector3(0, 0.5f, 0), transform.forward, FOV, Range);
+            MyGizmos.DrawFOV(transform.position + new Vector3(0, 0.5f, 0), transform.forward, FOV, AttackDistance);
         }
 
         public void PassAttack()

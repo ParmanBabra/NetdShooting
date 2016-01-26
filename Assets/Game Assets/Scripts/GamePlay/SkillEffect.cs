@@ -23,6 +23,8 @@ namespace NetdShooting.GamePlay
                 {
                     case SkillEffectType.MaxMinAttack:
                         return _calculater = new SkillEffectMaxMinAttack(this);
+                    case SkillEffectType.Heal:
+                        return _calculater = new SkillEffectHeal(this);
                 }
 
                 return _calculater = new SkillEffectMaxMinAttack(this);

@@ -8,8 +8,10 @@ namespace NetdShooting.GamePlay
     public class SkillPassive : BaseSkill
     {
         public SkillPassive()
+            : base()
         {
             this.SkillType = SkillType.Passive;
+            CanUse = false;
         }
 
         protected override void OnStart()

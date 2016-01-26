@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.3.1p3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -139,6 +141,7 @@
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\RangeAttack.cs" />
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\SkillBasicDirection.cs" />
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\SkillEffect.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\GamePlay\SkillEffectHeal.cs" />
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\SkillEffectMaxMinAttack.cs" />
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\SkillEffectType.cs" />
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\SkillFindMethod.cs" />

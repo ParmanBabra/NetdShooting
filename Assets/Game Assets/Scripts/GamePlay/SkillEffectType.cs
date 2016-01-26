@@ -5,6 +5,7 @@ namespace NetdShooting.GamePlay
 {
     public enum SkillEffectType 
     {
-        MaxMinAttack
+        MaxMinAttack,
+        Heal
     }
 }

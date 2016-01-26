@@ -7,9 +7,11 @@ namespace NetdShooting.GamePlay
     [AddComponentMenu("Game Play/Skill Trigger")]
     public class SkillTrigger : BaseSkill
     {
+        float _consumeMaxDuration = 1.0f;
         float _consumeDuration;
 
         public SkillTrigger()
+            : base()
         {
             this.SkillType = SkillType.Trigger;
         }
@@ -36,17 +38,24 @@ namespace NetdShooting.GamePlay
             }
 
             OwnerSkill.ManaPoint = Mathf.Max(OwnerSkill.ManaPoint - MPCost, 0);
-            _consumeDuration = 1.0f;
+            _consumeDuration = _consumeMaxDuration;
         }
 
         protected override void ProcessUseSkill(float daltaTime)
         {
+            base.ProcessUseSkill(daltaTime);
+            _consumeDuration = _consumeMaxDuration;
+        }
+
+        protected override void ProcessActionSkill()
+        {
+            base.ProcessActionSkill();
             IsOn = !IsOn;
 
             if (IsOn)
             {
                 On();
-                _consumeDuration = 1.0f;
+                _consumeDuration = _consumeMaxDuration;
             }
             else
                 Off();

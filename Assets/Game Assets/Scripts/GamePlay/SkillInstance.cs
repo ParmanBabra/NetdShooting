@@ -20,6 +20,7 @@ namespace NetdShooting.GamePlay
         private CharacterManager _characterManager;
 
         public SkillInstance()
+            : base()
         {
             this.SkillType = SkillType.Instance;
         }
@@ -32,6 +33,7 @@ namespace NetdShooting.GamePlay
 
         protected override void ProcessActionSkill()
         {
+            base.ProcessActionSkill();
             //Check Deal Damage
             bool dealed = false;
             var rotate = this.gameObject.transform.eulerAngles;

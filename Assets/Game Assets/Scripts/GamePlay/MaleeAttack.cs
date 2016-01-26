@@ -38,7 +38,7 @@ namespace NetdShooting.GamePlay
                 if (_character.gameObject.InsideFOV(other.gameObject,
                                      _character.transform.forward,
                                      _character.FOV,
-                                     _character.Range))
+                                     _character.AttackDistance))
                 {
                     Damage damage = CreateDmage();
                     other.DealDamage(damage);

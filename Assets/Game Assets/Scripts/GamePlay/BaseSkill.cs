@@ -25,6 +25,12 @@ namespace NetdShooting.GamePlay
 
         protected Character OwnerSkill { get; set; }
         protected Animator Animator { get; private set; }
+        public bool CanUse { get; protected set; }
+
+        public BaseSkill()
+        {
+            CanUse = true;
+        }
 
         public void Start()
         {
@@ -65,7 +71,10 @@ namespace NetdShooting.GamePlay
 
         public bool Use()
         {
-            if (!CanUse())
+            if (!CoolDowning())
+                return false;
+
+            if (!HaveMP())
                 return false;
 
             ProcessUseSkill(Time.deltaTime);
@@ -88,15 +97,14 @@ namespace NetdShooting.GamePlay
 
         protected virtual void ProcessUseSkill(float daltaTime)
         {
+            OwnerSkill.DisableMove();
             Animator.SetInteger("UseSkill", this.AnimationNumber);
         }
 
         protected virtual void UpdateSkill(float daltaTime) { }
 
         protected virtual void ProcessActionSkill()
-        {
-            OwnerSkill.DisableMove();
-        }
+        { }
 
         protected virtual void ProcessEndUseSkill()
         {
@@ -104,9 +112,7 @@ namespace NetdShooting.GamePlay
         }
 
         protected virtual void OnDrawActionGizmos()
-        {
-
-        }
+        { }
 
         protected Damage CreateDmage(DamageType type, int hitDamage, float during)
         {
@@ -119,9 +125,14 @@ namespace NetdShooting.GamePlay
             return damage;
         }
 
-        public bool CanUse()
+        public bool CoolDowning()
         {
             return CoolDown <= 0;
+        }
+
+        public bool HaveMP()
+        {
+            return OwnerSkill.ManaPoint >= MPCost;
         }
     }
 }
