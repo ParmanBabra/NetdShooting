@@ -56,8 +56,6 @@ namespace NetdShooting.GamePlay
                 OnDrawActionGizmos();
         }
 
-
-
         //For get skill infomation from data souce
         protected abstract void OnStart();
 
@@ -100,22 +98,18 @@ namespace NetdShooting.GamePlay
             OwnerSkill.ManaPoint -= MPCost;
             OwnerSkill.DisableMove();
             Animator.SetInteger("UseSkill", this.AnimationNumber);
-
-
         }
 
         protected virtual void UpdateSkill(float daltaTime) { }
 
-        protected virtual void ProcessActionSkill()
-        { }
+        protected virtual void ProcessActionSkill() { }
 
         protected virtual void ProcessEndUseSkill()
         {
             OwnerSkill.EnableMove();
         }
 
-        protected virtual void OnDrawActionGizmos()
-        { }
+        protected virtual void OnDrawActionGizmos() { }
 
         protected Damage CreateDmage(DamageType type, int hitDamage, float during)
         {

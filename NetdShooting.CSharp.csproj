@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.3.1p3</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -268,6 +266,15 @@
     <Compile Include="Assets\GameDataEditor\SampleScenes\GDESetDataScene\SetDataSceneStrings.cs" />
     <Compile Include="Assets\GameDataEditor\SampleScenes\PlaymakerSetDataTestScene\SetDataPlaymaker.cs" />
     <Compile Include="Assets\GameDataEditor\SampleScenes\PlaymakerSetDataTestScene\SetDataPlaymakerStrings.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX2_AutoRotate.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutoDestructShuriken.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutoRotate.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_AutodestructWhenNoChildren.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_InspectorHelp.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightFlicker.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightIntensityFade.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_ShurikenThreadFix.cs" />
+    <Compile Include="Assets\JMO Assets\Cartoon FX\Spawn System\CFX_SpawnSystem.cs" />
     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Demo TCP2\TCP2 Demo Assets\Misc\TCP2_Demo.cs" />
     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Demo TCP2\TCP2 Demo Assets\Misc\TCP2_Demo_View.cs" />
     <Compile Include="Assets\JMO Assets\Toony Colors Pro\Scripts\TCP2_RuntimeUtils.cs" />
@@ -1298,6 +1305,24 @@
     <None Include="Assets\GameDataEditor\SampleScenes\PlaymakerSetDataTestScene\README.txt" />
     <None Include="Assets\GameDataEditor\SampleScenes\PlaymakerSetDataTestScene\Resources\playmaker_set_data.txt" />
     <None Include="Assets\JMO Assets\!JMO Assets Readme.txt" />
+    <None Include="Assets\JMO Assets\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
+    <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX Readme.txt" />
+    <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX Releases Notes.txt" />
+    <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX2 Readme.txt" />
+    <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX2 Releases Notes.txt" />
+    <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX3 Readme.txt" />
+    <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX4 Readme.txt" />
+    <None Include="Assets\JMO Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAdd_Alpha8.shader" />
+    <None Include="Assets\JMO Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAlphaBlend_Alpha8.shader" />
+    <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Add.shader" />
+    <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Tint.shader" />
+    <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Invert.shader" />
+    <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
+    <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Hidden.shader" />
+    <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+Add VColor.shader" />
+    <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+Add.shader" />
+    <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+AddSoft VColor.shader" />
+    <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+AddSoft.shader" />
     <None Include="Assets\JMO Assets\Toony Colors Pro\!ToonyColorsPro Readme.txt" />
     <None Include="Assets\JMO Assets\Toony Colors Pro\Editor\Shader Templates\TCP2_User.txt" />
     <None Include="Assets\JMO Assets\Toony Colors Pro\Editor\Shader Templates\TCP2_User_Unity5.txt" />
