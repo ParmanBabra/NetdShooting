@@ -59,8 +59,7 @@ namespace NetdShooting.GamePlay
 
         private void Apply()
         {
-            //Play Effect Animation
-
+            OnStartEffect();
             foreach (var effect in Effects)
             {
                 effect.Apply(OwnerSkill);
@@ -69,8 +68,7 @@ namespace NetdShooting.GamePlay
 
         private void Unapply()
         {
-            //Play Effect Animation
-
+            OnEndEffect();
             foreach (var effect in Effects)
             {
                 effect.Unapply(OwnerSkill);

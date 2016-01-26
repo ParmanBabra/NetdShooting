@@ -118,6 +118,9 @@
   <ItemGroup>
     <Compile Include="Assets\Game Assets\Scripts\Core\GameObjectExtension.cs" />
     <Compile Include="Assets\Game Assets\Scripts\Core\MyGizmos.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\Effects\AnimationScrollTexture.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\Effects\AnimationSpriteSheet.cs" />
+    <Compile Include="Assets\Game Assets\Scripts\Effects\Transparencyable.cs" />
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\AttackType.cs" />
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\BaseSkill.cs" />
     <Compile Include="Assets\Game Assets\Scripts\GamePlay\BehaviourStatus.cs" />

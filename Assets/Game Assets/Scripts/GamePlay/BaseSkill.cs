@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using NetdShooting.Core;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -18,7 +19,8 @@ namespace NetdShooting.GamePlay
 
         [Header("Effect")]
         public GameObject FXEffect;
-        public string EffectSocketName;
+        public string EffectSocketName = "Footer";
+        private GameObject _effectObject;
 
 
         [Header("Debug")]
@@ -90,6 +92,11 @@ namespace NetdShooting.GamePlay
             Animator.SetInteger("UseSkill", 0);
         }
 
+        private UnityEngine.GameObject CreateEffect(Transform location)
+        {
+            return (GameObject)UnityEngine.Object.Instantiate(FXEffect, location.position, location.rotation);
+        }
+
         public void EndUseSkill()
         {
             ProcessEndUseSkill();
@@ -109,6 +116,25 @@ namespace NetdShooting.GamePlay
         protected virtual void ProcessEndUseSkill()
         {
             OwnerSkill.EnableMove();
+        }
+
+        protected virtual void OnStartEffect()
+        {
+            var socket = OwnerSkill.gameObject.FindObjectWithName(EffectSocketName);
+
+            if (socket == null)
+                return;
+
+            if (FXEffect == null)
+                return;
+
+            _effectObject = CreateEffect(socket.transform);
+            _effectObject.transform.SetParent(OwnerSkill.transform);
+        }
+
+        protected virtual void OnEndEffect()
+        {
+            GameObject.Destroy(_effectObject, 0.01f);
         }
 
         protected virtual void OnDrawActionGizmos() { }

@@ -90,6 +90,22 @@ namespace NetdShooting.Core
             }
         }
 
+        public static GameObject FindObjectWithName(this GameObject parent, string name)
+        {
+            if (parent.name == name)
+                return parent;
+
+            Transform t = parent.transform;
+            foreach (Transform tr in t)
+            {
+                var result = FindObjectWithName(tr.gameObject, name);
+
+                if (result != null)
+                    return result;
+            }
+            return null;
+        }
+
         public static GameObject FindMuzzle(this GameObject parent, string name)
         {
             var muzzlies = parent.FindGameObjectsInHierarchyWithTag("Muzzle");
