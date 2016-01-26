@@ -97,8 +97,11 @@ namespace NetdShooting.GamePlay
 
         protected virtual void ProcessUseSkill(float daltaTime)
         {
+            OwnerSkill.ManaPoint -= MPCost;
             OwnerSkill.DisableMove();
             Animator.SetInteger("UseSkill", this.AnimationNumber);
+
+
         }
 
         protected virtual void UpdateSkill(float daltaTime) { }
