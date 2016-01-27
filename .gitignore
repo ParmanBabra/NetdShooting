@@ -11,3 +11,4 @@
 sysinfo.txt
 
 -!*.dll
+ *.meta
