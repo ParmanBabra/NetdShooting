@@ -105,6 +105,11 @@ namespace NetdShooting.GamePlay
             _owner = owner;
         }
 
+        public void SetEffect(GameObject effect)
+        {
+            effect.transform.SetParent(this.transform);
+        }
+
         public float MovingSpeed
         {
             get { return Speed; }

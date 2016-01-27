@@ -94,7 +94,7 @@ namespace NetdShooting.GamePlay
 
         private UnityEngine.GameObject CreateEffect(Transform location)
         {
-            return (GameObject)UnityEngine.Object.Instantiate(FXEffect, location.position, location.rotation);
+            return (GameObject)UnityEngine.Object.Instantiate(FXEffect, location.position, OwnerSkill.transform.rotation);
         }
 
         public void EndUseSkill()
@@ -128,8 +128,27 @@ namespace NetdShooting.GamePlay
             if (FXEffect == null)
                 return;
 
+
+
             _effectObject = CreateEffect(socket.transform);
-            _effectObject.transform.SetParent(OwnerSkill.transform);
+
+            _effectObject.transform.SetParent(socket.transform);
+            _effectObject.transform.Rotate(Vector3.up, 180.0f);
+        }
+
+        protected virtual GameObject CreateEffect()
+        {
+            var socket = OwnerSkill.gameObject.FindObjectWithName(EffectSocketName);
+
+            if (socket == null)
+                return null;
+
+            if (FXEffect == null)
+                return null;
+
+            var o = CreateEffect(socket.transform);
+            o.transform.Rotate(Vector3.up, 180.0f);
+            return o;
         }
 
         protected virtual void OnEndEffect()

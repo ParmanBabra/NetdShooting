@@ -34,6 +34,8 @@ namespace NetdShooting.GamePlay
         protected override void ProcessActionSkill()
         {
             base.ProcessActionSkill();
+            OnStartEffect();
+
             //Check Deal Damage
             bool dealed = false;
             var rotate = this.gameObject.transform.eulerAngles;

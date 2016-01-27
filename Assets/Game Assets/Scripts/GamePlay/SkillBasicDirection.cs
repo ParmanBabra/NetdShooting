@@ -54,6 +54,7 @@ namespace NetdShooting.GamePlay
             projection.SetDamage(damage, AreaDamage, Radius);
             projection.SetOwner(OwnerSkill);
             projection.MovingSpeed = MovingSpeed;
+            projection.SetEffect(CreateEffect());
         }
 
 
