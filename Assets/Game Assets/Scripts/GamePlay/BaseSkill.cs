@@ -128,11 +128,9 @@ namespace NetdShooting.GamePlay
             if (FXEffect == null)
                 return;
 
-
-
             _effectObject = CreateEffect(socket.transform);
 
-            _effectObject.transform.SetParent(socket.transform);
+            _effectObject.transform.SetParent(OwnerSkill.transform);
             _effectObject.transform.Rotate(Vector3.up, 180.0f);
         }
 
@@ -146,9 +144,9 @@ namespace NetdShooting.GamePlay
             if (FXEffect == null)
                 return null;
 
-            var o = CreateEffect(socket.transform);
-            o.transform.Rotate(Vector3.up, 180.0f);
-            return o;
+            var effect = CreateEffect(socket.transform);
+            effect.transform.Rotate(Vector3.up, 180.0f);
+            return effect;
         }
 
         protected virtual void OnEndEffect()
