@@ -1,0 +1,170 @@
+fileFormatVersion: 2
+guid: 8499683611dd99340ae1912b3acf7d32
+timeCreated: 1452884118
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: BG_Chibi_Body_Base
+    100004: BG_Chibi_Head_Base
+    100006: Bip001
+    100008: Bip001 Head
+    100010: Bip001 L Calf
+    100012: Bip001 L Clavicle
+    100014: Bip001 L Foot
+    100016: Bip001 L Forearm
+    100018: Bip001 L Hand
+    100020: Bip001 L Thigh
+    100022: Bip001 L Toe0
+    100024: Bip001 L UpperArm
+    100026: Bip001 Neck
+    100028: Bip001 Pelvis
+    100030: Bip001 Ponytail1
+    100032: Bip001 Ponytail11
+    100034: Bip001 Ponytail12
+    100036: Bip001 Prop1
+    100038: Bip001 R Calf
+    100040: Bip001 R Clavicle
+    100042: Bip001 R Foot
+    100044: Bip001 R Forearm
+    100046: Bip001 R Hand
+    100048: Bip001 R Thigh
+    100050: Bip001 R Toe0
+    100052: Bip001 R UpperArm
+    100054: Bip001 Spine
+    100056: Bip001 Spine1
+    100058: Bip001 Tail
+    100060: Bip001 Tail1
+    100062: Chibi_Hair_Base
+    100064: L_side01
+    100066: L_side02
+    100068: Particle VADSiew 01
+    100070: Particle VieADw 01
+    100072: Particle VieDSw 01
+    100074: Particle View 01
+    100076: Particle View 01 1
+    100078: Particle View 01 2
+    100080: Particle View 01 3
+    100082: Particle View 0ASD1
+    100084: R_side01
+    100086: R_side02
+    100088: Weapon_Chibi_base
+    400000: //RootNode
+    400002: BG_Chibi_Body_Base
+    400004: BG_Chibi_Head_Base
+    400006: Bip001
+    400008: Bip001 Head
+    400010: Bip001 L Calf
+    400012: Bip001 L Clavicle
+    400014: Bip001 L Foot
+    400016: Bip001 L Forearm
+    400018: Bip001 L Hand
+    400020: Bip001 L Thigh
+    400022: Bip001 L Toe0
+    400024: Bip001 L UpperArm
+    400026: Bip001 Neck
+    400028: Bip001 Pelvis
+    400030: Bip001 Ponytail1
+    400032: Bip001 Ponytail11
+    400034: Bip001 Ponytail12
+    400036: Bip001 Prop1
+    400038: Bip001 R Calf
+    400040: Bip001 R Clavicle
+    400042: Bip001 R Foot
+    400044: Bip001 R Forearm
+    400046: Bip001 R Hand
+    400048: Bip001 R Thigh
+    400050: Bip001 R Toe0
+    400052: Bip001 R UpperArm
+    400054: Bip001 Spine
+    400056: Bip001 Spine1
+    400058: Bip001 Tail
+    400060: Bip001 Tail1
+    400062: Chibi_Hair_Base
+    400064: L_side01
+    400066: L_side02
+    400068: Particle VADSiew 01
+    400070: Particle VieADw 01
+    400072: Particle VieDSw 01
+    400074: Particle View 01
+    400076: Particle View 01 1
+    400078: Particle View 01 2
+    400080: Particle View 01 3
+    400082: Particle View 0ASD1
+    400084: R_side01
+    400086: R_side02
+    400088: Weapon_Chibi_base
+    4300000: Chibi_Hair_Base
+    4300002: Weapon_Chibi_base
+    4300004: BG_Chibi_Body_Base
+    4300006: BG_Chibi_Head_Base
+    9500000: //RootNode
+    13700000: BG_Chibi_Body_Base
+    13700002: BG_Chibi_Head_Base
+    13700004: Chibi_Hair_Base
+    13700006: Weapon_Chibi_base
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
